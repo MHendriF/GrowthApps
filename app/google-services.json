@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1004153831097",
+    "firebase_url": "https://growth-1502406677888.firebaseio.com",
+    "project_id": "growth-1502406677888",
+    "storage_bucket": "growth-1502406677888.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004153831097:android:f68664128174431b",
+        "android_client_info": {
+          "package_name": "android.trikarya.growth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004153831097-d15irp4scmp1cobdcoobrfi0jvgf73rg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "android.trikarya.growth",
+            "certificate_hash": "c3b6d338f53456a046d298cdcc9bbcf17949f117"
+          }
+        },
+        {
+          "client_id": "1004153831097-ro2fnc7ucsrhcppo4ac48191sstesmk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmg5tVtzlxiZdR8rfc_tyOjZjE9YvazJM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004153831097-ro2fnc7ucsrhcppo4ac48191sstesmk9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

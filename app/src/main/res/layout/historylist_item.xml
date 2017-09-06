@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/histo_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/et_padding_horizontal"
+    android:background="@drawable/border_set_all">
+    <!--<LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/et_padding"
+        android:paddingLeft="@dimen/et_padding"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:background="@drawable/shape_orange">
+        <ImageView
+            android:layout_width="@dimen/icon_listview_size"
+            android:layout_height="@dimen/icon_listview_size"
+            android:src="@drawable/submit_visit"/>
+    </LinearLayout>
+    -->
+    <TextView
+        android:id="@+id/deskripsi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Toko Contoh"
+        android:textSize="@dimen/footer_tv_size_small"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:layout_weight="7"/>
+    <TextView
+        android:id="@+id/tgl_log"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:text="31 Desember 2016"
+        android:textSize="@dimen/footer_tv_size_small"
+        android:textColor="@color/red"
+        android:layout_weight="3"/>
+        <!--<TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="success"
+            android:textSize="@dimen/footer_tv_size"
+            android:textColor="@android:color/holo_green_dark"/>
+            -->
+</LinearLayout>

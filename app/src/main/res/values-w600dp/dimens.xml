@@ -1,0 +1,39 @@
+<resources>
+    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
+         (such as screen margins) for screens with more than 820dp of available width. This
+         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
+    <dimen name="activity_horizontal_margin">32dp</dimen>
+    <dimen name="activity_vertical_margin">32dp</dimen>
+    <dimen name="activity_vertical_margin_noactionbar">80dp</dimen>
+    <dimen name="im_logo_size">80dp</dimen>
+    <dimen name="im_logo_margin_vertical">100dp</dimen>
+    <dimen name="et_height">60dp</dimen>
+    <dimen name="et_height_medium">70dp</dimen>
+    <dimen name="et_height_big">120dp</dimen>
+    <dimen name="et_textsize">28sp</dimen>
+    <dimen name="et_drawable_padding">24dp</dimen>
+    <dimen name="et_margin_vertical_big">28dp</dimen>
+    <dimen name="et_padding_horizontal">32dp</dimen>
+    <dimen name="et_padding">16dp</dimen>
+    <dimen name="bt_width">300dp</dimen>
+    <dimen name="bt_height">70dp</dimen>
+    <dimen name="bt_margin_vertical">46dp</dimen>
+    <dimen name="bt_drawable_padding_normal">30dp</dimen>
+    <dimen name="bt_drawable_padding">-70dp</dimen>
+    <dimen name="bt_drawable_padding_small">-50dp</dimen>
+    <dimen name="bt_drawable_padding_big">-100dp</dimen>
+    <dimen name="bt_padding_horizontal">60dp</dimen>
+    <dimen name="bt_padding_horizontal_medium">80dp</dimen>
+    <dimen name="bt_padding_horizontal_big">100dp</dimen>
+    <dimen name="footer_margin_vertical_big">100dp</dimen>
+    <dimen name="footer_margin_vertical">32dp</dimen>
+    <dimen name="footer_tv_size">30sp</dimen>
+    <dimen name="footer_tv_size_small">20sp</dimen>
+    <dimen name="dashboard_padding">16dp</dimen>
+    <dimen name="iv_size_dash">100dp</dimen>
+    <dimen name="icon_listview_size">100dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">24dp</dimen>
+    <dimen name="nav_header_height">180dp</dimen>
+    <dimen name="fab_margin">32dp</dimen>
+</resources>

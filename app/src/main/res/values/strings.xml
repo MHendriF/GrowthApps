@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">Growth Sales App</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="signin">Sign In</string>
+    <string name="signout">Sign Out</string>
+    <string name="forgot">forgot password?</string>
+    <string name="submitVisit">Submit</string>
+    <string name="visitPlan">Kunjungan</string>
+    <string name="outletList">List Klien</string>
+    <string name="takePhoto">Ambil Photo</string>
+    <string name="history">History</string>
+    <string name="draft">Draft Photo</string>
+    <string name="info">Info</string>
+    <string name="refresh">Refresh</string>
+    <string name="nameArea">Area Name :</string>
+    <string name="outletName">Klien Name :</string>
+    <string name="distributor">Suplier :</string>
+    <string name="address">Alamat :</string>
+    <string name="city">Kota :</string>
+    <string name="outletType">Tipe Klien:</string>
+    <string name="outletPhoto">Photo Klien:</string>
+    <string name="outletRank">Klien Rank :</string>
+    <string name="outletPhone">Kode Pos :</string>
+    <string name="registeredSF">Registered SF :</string>
+    <string name="date">Date</string>
+    <string name="checkIn">Check In</string>
+    <string name="submit">Submit</string>
+    <string name="submitSuccess">Submit Visit Complete</string>
+    <string name="orderProcess">Process Order</string>
+    <string name="skipOrder">Skip Order</string>
+    <string name="productName">Nama Produk</string>
+    <string name="quantity">Quantity</string>
+    <string name="cause">Pilih Alasan</string>
+    <string name="photoTitle">Judul Photo</string>
+    <string name="note">Keterangan</string>
+    <string name="profile">My Profile</string>
+    <string name="about">About</string>
+    <string name="competitor">Competitor Photo</string>
+    <string name="brand">Nama Brand</string>
+    <string name="registerOutlet">Daftar Klien</string>
+    <string name="registerOutletSuccess">Pendaftaran Klien Berhasil, Admin akan mereview secepatnya.</string>
+    <string name="backToHome">Back to Home</string>
+    <string name="getCoordinate">Dapatkan Koordinat</string>
+    <string name="getNow">Get Now</string>
+    <string name="next">Lanjut</string>
+    <string name="load">Load More</string>
+    <string name="copyright">Copyright \u00A9 2016 PT. Trikarya Teknologi Indonesia</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="versi">Versi 1.0.0</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="visit_date">Tgl Kunjungan :</string>
+    <string name="enter_date">Enter Tgl Kunjungan</string>
+    <string name="action_settings">Settings</string>
+    <string name="search_hint">Cari Klien</string>
+
+    <!--- ABOUT APPLICATION -->
+    <string name="about_app">
+         Panduan Penggunaan Aplikasi\n\n
+                                • Anda harus login terlebih dahulu untuk bisa menggunakan Aplikasi ini. \n\n
+                                • Pendaftaran Outlet harus mendapatkan approval, sebelum outlet tersebut akan tampil di outlet list \n\n
+                                • Approval pendaftaran outlet bisa di-skip, apabila saat registrasi outlet ada Effective call \n\n
+                                • Pastikan koordinat Anda sama dengan koordinat outlet, saat Anda melakukan Submit Visit. \n\n
+                                • Secara berkala silahkan tekan tombol "refresh", untuk update data dari server. \n\n
+                                • History akan terhapus, saat Anda Log out aplikasi. \n\n
+                                • Harap di cek ke-valid-an data, sebelum Anda melakukan inputan apapun dalam aplikasi ini. \n\n
+    </string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_info">Info</string>
+    <string name="title_activity_outlet_list">Klien List</string>
+    <string name="title_activity_visit_plan">List Kunjungan</string>
+    <string name="title_activity_history">History</string>
+    <string name="title_activity_process_order">Process Order</string>
+    <string name="title_activity_skip_order">Skip Order</string>
+    <string name="title_activity_take_photo">Take Photo</string>
+    <string name="title_tab_outlet">Klien</string>
+    <string name="title_tab_competitor">Competitor</string>
+    <string name="title_activity_competitor">Competitor</string>
+    <string name="title_activity_submit_visit">Submit Kunjungan</string>
+    <string name="title_activity_register_outlet">Register Klien</string>
+    <string name="title_activity_register_visit_plan">Register Plan Kunjungan</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_profil">Profil</string>
+    <string name="title_about">About</string>
+    <string name="title_recover">Recover your account</string>
+    <string name="message_recover">Untuk mengubah password anda, silahkan lengkapi data diri anda di bawah ini terlebih dahulu.</string>
+</resources>
