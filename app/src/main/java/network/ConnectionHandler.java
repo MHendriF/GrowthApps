@@ -46,10 +46,14 @@ public class ConnectionHandler {
     ProgressDialog progressDialog;
     HurlStack hurlStack;
     public static final int CONNECTION_TIMEOUT = 1000*90;
-//    public static final String BASE_URL =  "https://hoss.hisamitsu.co.id/",IMAGE_URL =  "https://hoss.hisamitsu.co.id/image_upload/news", response_message_success = "success", response_message_error = "error"
-//            ,response_data = "data",response_message = "message", response_status = "status", response_pagination = "pagination", BaseURLImage = "http://103.252.101.105/";;
-    public static final String BASE_URL =  "https://trikarya.growth.co.id/", response_message_success = "success", response_message_error = "error"
-        ,response_data = "data", response_message = "message", response_status = "status", response_pagination = "pagination";;
+
+    public static final String BASE_URL =  "https://trikarya.growth.co.id/",
+        response_message_success = "success",
+        response_message_error = "error",
+        response_data = "data",
+        response_message = "message",
+        response_status = "status",
+        response_pagination = "pagination";;
 
     public static int post_method = Request.Method.POST, get_method = Request.Method.GET;
     Context context;
@@ -128,7 +132,6 @@ public class ConnectionHandler {
                 progressDialog.dismiss();
                 try {
                     Log.d("Responseee", String.valueOf(response));
-
                     if(response.getString(response_status).equals(response_message_success)) {
                         String data = "", pagination = "";
                         if (response.has(response_pagination))
@@ -142,7 +145,7 @@ public class ConnectionHandler {
                     }
                     else
                         jsonCallback.Done(null, response.getString(response_message));
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     jsonCallback.Done(null,e.getMessage());
                 }

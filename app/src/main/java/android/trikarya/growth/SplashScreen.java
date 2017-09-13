@@ -37,39 +37,7 @@ import static java.lang.Thread.sleep;
  */
 
 public class SplashScreen extends Activity {
-//    DatabaseHandler databaseHandler;
-//    Intent intent;
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        // TODO Auto-generated method stub
-//        super.onCreate(savedInstanceState);
-//        setContentView(android.trikarya.growth.R.layout.activity_splash_screen);
-//        databaseHandler = new DatabaseHandler(this);
-//        Thread timerThread = new Thread(){
-//            public void run(){
-//                try{
-//                    sleep(1500);
-//                }catch(InterruptedException e){
-//                    e.printStackTrace();
-//                }finally{
-//                    if(databaseHandler.getUserCount() == 0)
-//                        intent = new Intent(SplashScreen.this,Login.class);
-//                    else
-//                        intent = new Intent(SplashScreen.this,Dashboard.class);
-//                    startActivity(intent);
-//                }
-//
-//            }
-//        };
-//        timerThread.start();
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        // TODO Auto-generated method stub
-//        super.onPause();
-//        finish();
-//    }
+
     DatabaseHandler databaseHandler;
     Intent intent;
     UserNetwork userNetwork;
@@ -126,6 +94,7 @@ public class SplashScreen extends Activity {
                 competitors = new ArrayList<Competitor>();
                 tipePhotos = new ArrayList<TipePhoto>();
                 JsonCallback jsonCallback = new JsonCallback() {
+
                     @Override
                     public void Done(JSONObject jsonObject, String message) {
                         if (message.equals(ConnectionHandler.response_message_success) && jsonObject != null) {

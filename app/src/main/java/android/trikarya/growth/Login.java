@@ -36,67 +36,6 @@ public class Login extends AppCompatActivity {
     UserNetwork userNetwork;
     User user;
 
-    //OLD
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//
-//        setContentView(android.trikarya.growth.R.layout.activity_login);
-//        username = (EditText) findViewById(android.trikarya.growth.R.id.username);
-//        password = (EditText) findViewById(android.trikarya.growth.R.id.password);
-//        signin = (Button) findViewById(android.trikarya.growth.R.id.signin);
-//        signin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                User user = new User(username.getText().toString(),password.getText().toString());
-//                authenticateUser(user);
-//            }
-//        });
-//        forgot = (TextView) findViewById(android.trikarya.growth.R.id.forgot);
-//        forgot.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(Login.this,ForgotPassword.class));
-//            }
-//        });
-//    }
-//    private void authenticateUser(final User user) {
-//        ServerRequest serverRequest = new ServerRequest(this);
-//        serverRequest.fetchUserDataInBackground(user, new GetUserCallback() {
-//            @Override
-//            public void Done(User returnedUser) {
-//                if (returnedUser == null) {
-//                    showError();
-//                } else {
-//                    if (returnedUser.getKodeRole() != 3)
-//                        showError();
-//                    else
-//                        logUserIn(returnedUser);
-//                }
-//            }
-//        });
-//    }
-//
-//    private void logUserIn(User returnedUser) {
-//        DatabaseHandler databaseHandler = new DatabaseHandler(this);
-//        databaseHandler.createUser(returnedUser);
-//        this.finish();
-//        startActivity(new Intent(this, Dashboard.class));
-//    }
-//
-//    private void showError() {
-//        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-//        alert.setMessage("Maaf, Username/Password Salah !");
-//        alert.setPositiveButton("Tutup", null);
-//        alert.show();
-//    }
-//
-//    @Override
-//    public void onBackPressed() {
-//        Login.super.onBackPressed();
-//    }
-
-    //NEW
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +67,6 @@ public class Login extends AppCompatActivity {
                 token = tempIDFCM.getToken();
             }
            userNetwork.login(username.getText().toString(), password.getText().toString(), token, new JsonCallback() {
-            //userNetwork.login(username.getText().toString(), password.getText().toString(), new JsonCallback() {
                 @Override
                 public void Done(JSONObject jsonObject, String message) {
                     if (message.equals(ConnectionHandler.response_message_success) && jsonObject != null) {
@@ -143,7 +81,8 @@ public class Login extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     } else {
-                        Toast.makeText(Login.this, message, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Login.this, message, Toast.LENGTH_LONG).show();
+                        Toast.makeText(Login.this, "Pastikan username dan password anda benar!", Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -155,7 +94,7 @@ public class Login extends AppCompatActivity {
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         databaseHandler.createUser(returnedUser);
         this.finish();
-        startActivity(new Intent(this, SplashScreen.class));
+        startActivity(new Intent(this, Dashboard.class));
     }
 
     private void showError() {
