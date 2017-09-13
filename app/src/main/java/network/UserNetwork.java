@@ -1,6 +1,7 @@
 package network;
 
 import android.content.Context;
+import android.util.Log;
 
 /**
  * Created by Hendry on 9/5/2017.
@@ -10,11 +11,9 @@ public class UserNetwork extends BaseNetwork{
     public UserNetwork(Context context) {
         super(context);
     }
-//    public void login(String username,String password, String fcmId,JsonCallback jsonCallback){
-//      connectionHandler.MakeConnection(ConnectionHandler.get_method, "login/" +username+"/"+password+"/"+fcmId, null, jsonCallback,"Processing","Please Wait");
-//    }
-    public void login(String username,String password, JsonCallback jsonCallback){
-        connectionHandler.MakeConnection(ConnectionHandler.get_method, "login/" +username+"/"+password+"/", null, jsonCallback,"Processing","Please Wait");
+    public void login(String username,String password, String fcmId,JsonCallback jsonCallback){
+      connectionHandler.MakeConnection(ConnectionHandler.get_method, "login/" +username+"/"+password+"/"+fcmId, null, jsonCallback,"Processing","Please Wait");
+        Log.d("URL", String.valueOf(ConnectionHandler.get_method + "login/" +username+"/"+password+"/"+fcmId));
     }
     public void resetPassword(String email, String nik, String telepon,JsonCallback jsonCallback){
         connectionHandler.MakeConnection(ConnectionHandler.get_method,"resetPass/"+email

@@ -27,11 +27,13 @@ import Master.User;
  */
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    TextView username;
-    DatabaseHandler databaseHandler;
-    ServerRequest serverRequest;
-    private String PROJECT_NUMBER = "1095564458173";
-    User user;
+
+        TextView username;
+        DatabaseHandler databaseHandler;
+        ServerRequest serverRequest;
+        private String PROJECT_NUMBER = "1095564458173";
+        User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,6 +3,7 @@ package network;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.trikarya.growth.R;
+import android.util.Log;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -48,7 +49,7 @@ public class ConnectionHandler {
 //    public static final String BASE_URL =  "https://hoss.hisamitsu.co.id/",IMAGE_URL =  "https://hoss.hisamitsu.co.id/image_upload/news", response_message_success = "success", response_message_error = "error"
 //            ,response_data = "data",response_message = "message", response_status = "status", response_pagination = "pagination", BaseURLImage = "http://103.252.101.105/";;
     public static final String BASE_URL =  "https://trikarya.growth.co.id/", response_message_success = "success", response_message_error = "error"
-        ,response_data = "data",response_message = "message", response_status = "status", response_pagination = "pagination";;
+        ,response_data = "data", response_message = "message", response_status = "status", response_pagination = "pagination";;
 
     public static int post_method = Request.Method.POST, get_method = Request.Method.GET;
     Context context;
@@ -126,6 +127,8 @@ public class ConnectionHandler {
             public void onResponse(JSONObject response) {
                 progressDialog.dismiss();
                 try {
+                    Log.d("Responseee", String.valueOf(response));
+
                     if(response.getString(response_status).equals(response_message_success)) {
                         String data = "", pagination = "";
                         if (response.has(response_pagination))
