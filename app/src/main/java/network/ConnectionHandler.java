@@ -48,6 +48,7 @@ public class ConnectionHandler {
     public static final int CONNECTION_TIMEOUT = 1000*90;
 
     public static final String BASE_URL =  "https://trikarya.growth.co.id/",
+    //public static final String BASE_URL =  "http://localhost/growth2/growth/public/",
         response_message_success = "success",
         response_message_error = "error",
         response_data = "data",
@@ -133,14 +134,11 @@ public class ConnectionHandler {
                 try {
                     Log.d("Responseee", String.valueOf(response));
                     if(response.getString(response_status).equals(response_message_success)) {
-                        String data = "", pagination = "";
-                        if (response.has(response_pagination))
-                            pagination = response.getString(response_pagination);
+                        String data = "";
                         if (response.has(response_data))
                             data = response.getString(response_data);
                         JSONObject fromServer = new JSONObject();
                         fromServer.put(response_data, data);
-                        fromServer.put(response_pagination, pagination);
                         jsonCallback.Done(fromServer, response.getString(response_status));
                     }
                     else
@@ -169,14 +167,11 @@ public class ConnectionHandler {
             public void onResponse(JSONObject response) {
                 progressDialog.dismiss();
                 try {
-                    String data = "", pagination = "";
-                    if (response.has(response_pagination))
-                        pagination = response.getString(response_pagination);
+                    String data = "";
                     if (response.has(response_data))
                         data = response.getString(response_data);
                     JSONObject fromServer = new JSONObject();
                     fromServer.put(response_data,data);
-                    fromServer.put(response_pagination,pagination);
                     jsonCallback.Done(fromServer,response.getString(response_status));
                 } catch (JSONException e) {
                     e.printStackTrace();

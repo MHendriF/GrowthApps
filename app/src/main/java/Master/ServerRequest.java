@@ -16,6 +16,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +45,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -62,6 +68,7 @@ public class ServerRequest {
     String tgl;
     String token;
     TempIDFCM tempIDFCM;
+    GoogleMap mMap;
 
     public static final int CONNECTION_TIMEOUT = 1000*90;
     //public static final String SERVER_ADDRESS =  "http://localhost/growth2/growth/public/";
@@ -581,6 +588,92 @@ public class ServerRequest {
             e.printStackTrace();
         }
     }
+
+    public void getAllOutlet(final Context context, final GetAllDataCallback getAllDataCallback){
+        progressDialog.setMessage("Mohon ditunggu...");
+        progressDialog.show();
+        final ArrayList<Outlet> outletLists = new ArrayList<Outlet>();
+        Log.d("getAllData 4 >> ", String.valueOf("https://trikarya.growth.co.id/" + "getNearbyOutlet/"));
+
+        try{
+            final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_ADDRESS + "getNearbyOutlet/",null,new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    progressDialog.dismiss();
+                    JSONObject responses = null;
+
+                    try {
+                        responses = new JSONObject(response.getString("data"));
+                        JSONArray jsonArray;
+                        //GoogleMap mMap = null;
+                        if (responses.has("outlet")) {
+                            jsonArray = responses.getJSONArray("outlet");
+                            Outlet outlets = null;
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+                                MarkerOptions markerOptions = new MarkerOptions();
+
+                                if (jsonResponse.length() != 0) {
+                                    outlets = new Outlet(jsonResponse.getInt("kd_outlet"),
+                                            jsonResponse.getInt("kd_kota"), jsonResponse.getInt("kd_user"),
+                                            jsonResponse.getInt("kd_dist"), jsonResponse.getString("nm_outlet"),
+                                            jsonResponse.getString("almt_outlet"), jsonResponse.getInt("kd_tipe"),
+                                            jsonResponse.getString("rank_outlet"), jsonResponse.getString("kodepos"),
+                                            jsonResponse.getString("reg_status"), jsonResponse.getString("latitude"),
+                                            jsonResponse.getString("longitude"));
+                                    outlets.setStatus_area(jsonResponse.getInt("status_area"));
+                                    outletLists.add(outlets);
+
+                                    Log.d("Outlets", String.valueOf(outlets.Callback()));
+                                    Log.d("Latitude", String.valueOf(outlets.CallbackLatitude()));
+                                    Log.d("Longitude", String.valueOf(outlets.CallbackLongitude()));
+
+                                    double lat = Double.parseDouble(outlets.CallbackLatitude());
+                                    double lng = Double.parseDouble(outlets.CallbackLongitude());
+
+                                    LatLng latLng = new LatLng(1.3521, 103.8198);
+                                    markerOptions.position(latLng);
+                                    markerOptions.title("Tes");
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+                                    mMap.addMarker(markerOptions);
+                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                                    mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
+                                }
+
+                            }
+                            //Log.d("Outlet list", String.valueOf(outletLists));
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    progressDialog.dismiss();
+                    getAllDataCallback.Done(error.toString());
+                }
+            });
+
+            RequestQueue requestQueue = Volley.newRequestQueue(context, hurlStack);
+            RetryPolicy policy = new DefaultRetryPolicy(CONNECTION_TIMEOUT, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+            jsonObjectRequest.setRetryPolicy(policy);
+            requestQueue.add(jsonObjectRequest);
+        }
+        catch (Exception e)
+        {
+            getAllDataCallback.Done(e.getMessage());
+        }
+        return;
+    }
+
+
     public void getAllData(final Context context, final User user, final GetAllDataCallback getAllDataCallback){
         progressDialog.setMessage("Mohon ditunggu...");
         progressDialog.show();

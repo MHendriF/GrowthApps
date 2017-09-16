@@ -54,11 +54,14 @@
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:padding="@dimen/dashboard_padding"
             android:onClick="goToMenu">
+
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="@dimen/iv_size_dash"
                 android:layout_height="@dimen/iv_size_dash"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/cal2"/>
+                android:src="@drawable/cal2" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,127 +71,147 @@
                 android:layout_gravity="center_horizontal"/>
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal">
+
         <LinearLayout
             android:id="@+id/dash_ol"
-            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:padding="@dimen/dashboard_padding"
-            android:onClick="goToMenu">
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="goToMenu"
+            android:orientation="vertical"
+            android:padding="@dimen/dashboard_padding">
+
             <ImageView
                 android:layout_width="@dimen/iv_size_dash"
                 android:layout_height="@dimen/iv_size_dash"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/iduser"/>
+                android:src="@drawable/iduser" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/outletList"
                 android:textColor="@color/lemahteles"
-                android:textSize="@dimen/footer_tv_size"
-                android:layout_gravity="center_horizontal"/>
+                android:textSize="@dimen/footer_tv_size" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/dash_tp"
-            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:padding="@dimen/dashboard_padding"
-            android:onClick="goToMenu">
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="goToMenu"
+            android:orientation="vertical"
+            android:padding="@dimen/dashboard_padding">
+
             <ImageView
                 android:layout_width="@dimen/iv_size_dash"
                 android:layout_height="@dimen/iv_size_dash"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/photo"/>
+                android:src="@drawable/photo" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/takePhoto"
                 android:textColor="@color/lemahteles"
-                android:textSize="@dimen/footer_tv_size"
-                android:layout_gravity="center_horizontal"/>
+                android:textSize="@dimen/footer_tv_size" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin">
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:orientation="horizontal">
+
         <LinearLayout
             android:id="@+id/dash_draft"
-            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:padding="@dimen/dashboard_padding"
-            android:onClick="goToMenu">
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="goToMenu"
+            android:orientation="vertical"
+            android:padding="@dimen/dashboard_padding">
+
             <ImageView
                 android:layout_width="@dimen/iv_size_dash"
                 android:layout_height="@dimen/iv_size_dash"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/grap"/>
+                android:src="@drawable/grap" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/draft"
                 android:textColor="@color/lemahteles"
-                android:textSize="@dimen/footer_tv_size"
-                android:layout_gravity="center_horizontal"/>
+                android:textSize="@dimen/footer_tv_size" />
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/dash_info"
-            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:padding="@dimen/dashboard_padding"
-            android:onClick="goToMenu">
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="goToMenu"
+            android:orientation="vertical"
+            android:padding="@dimen/dashboard_padding">
+
             <ImageView
                 android:layout_width="@dimen/iv_size_dash"
                 android:layout_height="@dimen/iv_size_dash"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/cloud"/>
+                android:src="@drawable/cloud" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="@string/refresh"
                 android:textColor="@color/lemahteles"
-                android:textSize="@dimen/footer_tv_size"
-                android:layout_gravity="center_horizontal"/>
+                android:textSize="@dimen/footer_tv_size" />
         </LinearLayout>
 
 
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/dash_nearby"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToMenu"
+        android:text="Nearby Outlet" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:paddingTop="10dp"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/footer_tv_size_small"
-        android:text="@string/copyright"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/footer_margin_vertical"
-        android:layout_gravity="center_horizontal"/>
+        android:paddingTop="10dp"
+        android:text="@string/copyright"
+        android:textSize="@dimen/footer_tv_size_small" />
 </LinearLayout>

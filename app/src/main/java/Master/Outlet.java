@@ -132,4 +132,13 @@ public class Outlet {
     public String toString() {
         return this.getNama();
     }
+
+    public String Callback() { return this.getKode()+","+this.getNama()+","+this.getLatitude()+","+this.getLongitude(); }
+
+    public String CallbackName() { return this.getNama(); }
+
+    public String CallbackLatitude() { return this.getLatitude(); }
+
+    public String CallbackLongitude() { return this.getLongitude(); }
+
 }
