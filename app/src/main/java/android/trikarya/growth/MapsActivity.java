@@ -12,8 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -29,7 +27,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import Master.Coordinate;
 import maps.GetNearbyPlacesData;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -47,7 +44,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static final int REQUEST_LOCATION_CODE = 99;
     int PROXIMITY_RADIUS = 2000;
     double latitude,longitude;
-    Coordinate coordinate;
 
     String lat, lng;
 
@@ -118,8 +114,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (currentLocationMarker != null){
             currentLocationMarker.remove();
         }
-
-        coordinate = new Coordinate(latitude, longitude);
 
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
@@ -193,26 +187,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(this);
 
     }
-
-//    public void onPress(View v)
-//    {
-//        Object dataTransfer[] = new Object[2];
-//        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData(this);
-//
-//        switch (v.getId())
-//        {
-//            case R.id.showNearby:
-//                lat = String.valueOf(coordinate.getLatitude());
-//                lng = String.valueOf(coordinate.getLongitude());
-//
-//                String url = getUrl(lat, lng, PROXIMITY_RADIUS);
-//                dataTransfer[0] = mMap;
-//                dataTransfer[1] = url;
-//                getNearbyPlacesData.execute(dataTransfer);
-//                break;
-//        }
-//
-//    }
 
     private String getUrl(String lat, String lng, int PROXIMITY_RADIUS)
     {

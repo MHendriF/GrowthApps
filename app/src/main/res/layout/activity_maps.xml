@@ -12,20 +12,6 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/showNearby"
-            android:layout_width="194dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:onClick="onPress"
-            android:text="Show Nearby Outlet" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical">
