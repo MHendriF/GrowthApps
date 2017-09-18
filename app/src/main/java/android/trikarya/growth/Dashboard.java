@@ -107,31 +107,6 @@ public class Dashboard extends AppCompatActivity
         }
     }
 
-    private void getNearbyOutlet(int status)
-    {
-        Toast.makeText(this, "Getting data from server, please wait",
-                Toast.LENGTH_LONG).show();
-        serverRequest = new ServerRequest(this);
-        if(status == 0) {
-            serverRequest.getAllOutlet(this, new GetAllDataCallback() {
-                @Override
-                public void Done(String message) {
-                    if(!message.equals("success"))
-                        showError(message);
-                }
-            });
-        }
-        else
-            serverRequest.fetchVisitPlanDataInBackground(user, new GetVisitPlanCallback() {
-                @Override
-                public void Done(String message) {
-                    if(!message.equals("success"))
-                        Toast.makeText(Dashboard.this, "Getting data from server failed because of "+message,
-                                Toast.LENGTH_LONG).show();
-                }
-            });
-    }
-
     private void getData(int status)
     {
         Toast.makeText(this, "Getting data from server, please wait",
@@ -189,159 +164,158 @@ public class Dashboard extends AppCompatActivity
                 intent = new Intent(this,Draft.class);
                 break;
             case R.id.dash_nearby:
-                Toast.makeText(Dashboard.this, "Please Wait...",Toast.LENGTH_LONG).show();
+                Toast.makeText(Dashboard.this, "Please Wait....",Toast.LENGTH_LONG).show();
                 intent = new Intent(this,MapsActivity.class);
-                //getNearbyOutlet(0);
                 break;
             default:
                 intent = null;
-//                databaseHandler.deleteAll();
-//                getData(0);
-//                break;
+                databaseHandler.deleteAll();
+                getData(0);
+                break;
 
                 //new
-                outletList = new ArrayList<Outlet>();
-                cityList = new ArrayList<City>();
-                distributorList = new ArrayList<Distributor>();
-                visitPlanDbs = new ArrayList<VisitPlanDb>();
-                tipeList = new ArrayList<Tipe>();
-                produkList = new ArrayList<Produk>();
-                competitors = new ArrayList<Competitor>();
-                tipePhotos = new ArrayList<TipePhoto>();
-                JsonCallback jsonCallback = new JsonCallback() {
-                    @Override
-                    public void Done(JSONObject jsonObject, String message)
-                    {
-                        if (message.equals(ConnectionHandler.response_message_success) && jsonObject != null) {
-                            JSONObject response = null;
-                            try {
-                                response = new JSONObject(jsonObject.getString("data"));
-                                JSONArray jsonArray;
-                                if (response.has("kota")) {
-                                    jsonArray = response.getJSONArray("kota");
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
-                                            cityList.add(new City(jsonResponse.getInt("id"),
-                                                    jsonResponse.getInt("kd_area"), jsonResponse.getString("nm_kota")));
-                                        }
-                                    }
-                                }
-                                if (response.has("competitor")) {
-                                    jsonArray = response.getJSONArray("competitor");
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
-                                            competitors.add(new Competitor(jsonResponse.getInt("id"),
-                                                    jsonResponse.getInt("kd_kota"), jsonResponse.getString("nm_competitor"),
-                                                    jsonResponse.getString("alamat")));
-                                        }
-                                    }
-                                }
-                                if (response.has("outlet")) {
-                                    jsonArray = response.getJSONArray("outlet");
-                                    Outlet outlet;
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
-                                            outlet = new Outlet(jsonResponse.getInt("kd_outlet"),
-                                                    jsonResponse.getInt("kd_kota"), jsonResponse.getInt("kd_user"),
-                                                    jsonResponse.getInt("kd_dist"), jsonResponse.getString("nm_outlet"),
-                                                    jsonResponse.getString("almt_outlet"), jsonResponse.getInt("kd_tipe"),
-                                                    jsonResponse.getString("rank_outlet"), jsonResponse.getString("kodepos"),
-                                                    jsonResponse.getString("reg_status"), jsonResponse.getString("latitude"),
-                                                    jsonResponse.getString("longitude"));
-                                            outlet.setStatus_area(jsonResponse.getInt("status_area"));
-                                            outletList.add(outlet);
-                                        }
-                                    }
-                                }
-                                if (response.has("distributor")) {
-                                    jsonArray = response.getJSONArray("distributor");
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
-                                            distributorList.add(new Distributor(jsonResponse.getInt("id"),
-                                                    jsonResponse.getString("kd_dist"), jsonResponse.getString("kd_tipe"),
-                                                    jsonResponse.getInt("kd_kota"), jsonResponse.getString("nm_dist"),
-                                                    jsonResponse.getString("almt_dist"), jsonResponse.getString("telp_dist")));
-                                        }
-                                    }
-                                }
-                                if (response.has("tipe")) {
-                                    jsonArray = response.getJSONArray("tipe");
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
-                                            tipeList.add(new Tipe(jsonResponse.getInt("id"),
-                                                    jsonResponse.getString("nm_tipe")));
-                                        }
-                                    }
-                                }
-                                if (response.has("visitplan")) {
-                                    jsonArray = response.getJSONArray("visitplan");
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
-                                            visitPlanDbs.add(new VisitPlanDb(jsonResponse.getInt("id"),
-                                                    jsonResponse.getInt("kd_outlet"), jsonResponse.getString("date_visit"),
-                                                    jsonResponse.getString("date_create_visit"), jsonResponse.getInt("approve_visit"),
-                                                    jsonResponse.getInt("status_visit"), jsonResponse.getString("date_visiting"),
-                                                    jsonResponse.getString("skip_order_reason"), jsonResponse.getString("skip_reason")));
-                                        }
-                                    }
-                                }
-                                if (response.has("produk")) {
-                                    jsonArray = response.getJSONArray("produk");
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
-                                            produkList.add(new Produk(jsonResponse.getInt("id"), jsonResponse.getString("kd_produk"),
-                                                    jsonResponse.getString("nm_produk")));
-                                        }
-                                    }
-                                }
-                                if (response.has("tipe_photo")) {
-                                    jsonArray = response.getJSONArray("tipe_photo");
-                                    for (int i = 0; i < jsonArray.length(); i++) {
-                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
-                                            tipePhotos.add(new TipePhoto(jsonResponse.getInt("id"),
-                                                    jsonResponse.getString("nama_tipe")));
-                                        }
-                                    }
-                                }
-                                databaseHandler.deleteAll();
-                                insertCityToDB(cityList);
-                                insertDistributorToDB(distributorList);
-                                insertOutletToDB(outletList);
-                                insertTipeToDB(tipeList);
-                                insertVisitPlanToDB(visitPlanDbs);
-                                insertProdukToDB(produkList);
-                                insertCompetitor(competitors);
-                                insertTipePhoto(tipePhotos);
-                                User user = databaseHandler.getUser();
-
-                                //Log.d("UserData", String.valueOf(databaseHandler.getUser()));
-
-                                user.setStatus(1);
-                                databaseHandler.updateUser(user);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        } else
-                            userNetwork.getAllData(databaseHandler.getUser().getKode(), databaseHandler.getUser().getKd_area(), this, true);
-                    }
-                };
-                try {
-                    databaseHandler.deleteAll();
-                    Log.d("getAllData 3 >> ", String.valueOf("https://trikarya.growth.co.id/" + "getAll/" +databaseHandler.getUser().getKode()+"/"+databaseHandler.getUser().getKd_area()));
-                    userNetwork.getAllData(databaseHandler.getUser().getKode(), databaseHandler.getUser().getKd_area(), jsonCallback, true);
-                    break;
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
+//                outletList = new ArrayList<Outlet>();
+//                cityList = new ArrayList<City>();
+//                distributorList = new ArrayList<Distributor>();
+//                visitPlanDbs = new ArrayList<VisitPlanDb>();
+//                tipeList = new ArrayList<Tipe>();
+//                produkList = new ArrayList<Produk>();
+//                competitors = new ArrayList<Competitor>();
+//                tipePhotos = new ArrayList<TipePhoto>();
+//                JsonCallback jsonCallback = new JsonCallback() {
+//                    @Override
+//                    public void Done(JSONObject jsonObject, String message)
+//                    {
+//                        if (message.equals(ConnectionHandler.response_message_success) && jsonObject != null) {
+//                            JSONObject response = null;
+//                            try {
+//                                response = new JSONObject(jsonObject.getString("data"));
+//                                JSONArray jsonArray;
+//                                if (response.has("kota")) {
+//                                    jsonArray = response.getJSONArray("kota");
+//                                    for (int i = 0; i < jsonArray.length(); i++) {
+//                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                        if (jsonResponse.length() != 0) {
+//                                            cityList.add(new City(jsonResponse.getInt("id"),
+//                                                    jsonResponse.getInt("kd_area"), jsonResponse.getString("nm_kota")));
+//                                        }
+//                                    }
+//                                }
+//                                if (response.has("competitor")) {
+//                                    jsonArray = response.getJSONArray("competitor");
+//                                    for (int i = 0; i < jsonArray.length(); i++) {
+//                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                        if (jsonResponse.length() != 0) {
+//                                            competitors.add(new Competitor(jsonResponse.getInt("id"),
+//                                                    jsonResponse.getInt("kd_kota"), jsonResponse.getString("nm_competitor"),
+//                                                    jsonResponse.getString("alamat")));
+//                                        }
+//                                    }
+//                                }
+//                                if (response.has("outlet")) {
+//                                    jsonArray = response.getJSONArray("outlet");
+//                                    Outlet outlet;
+//                                    for (int i = 0; i < jsonArray.length(); i++) {
+//                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                        if (jsonResponse.length() != 0) {
+//                                            outlet = new Outlet(jsonResponse.getInt("kd_outlet"),
+//                                                    jsonResponse.getInt("kd_kota"), jsonResponse.getInt("kd_user"),
+//                                                    jsonResponse.getInt("kd_dist"), jsonResponse.getString("nm_outlet"),
+//                                                    jsonResponse.getString("almt_outlet"), jsonResponse.getInt("kd_tipe"),
+//                                                    jsonResponse.getString("rank_outlet"), jsonResponse.getString("kodepos"),
+//                                                    jsonResponse.getString("reg_status"), jsonResponse.getString("latitude"),
+//                                                    jsonResponse.getString("longitude"));
+//                                            outlet.setStatus_area(jsonResponse.getInt("status_area"));
+//                                            outletList.add(outlet);
+//                                        }
+//                                    }
+//                                }
+//                                if (response.has("distributor")) {
+//                                    jsonArray = response.getJSONArray("distributor");
+//                                    for (int i = 0; i < jsonArray.length(); i++) {
+//                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                        if (jsonResponse.length() != 0) {
+//                                            distributorList.add(new Distributor(jsonResponse.getInt("id"),
+//                                                    jsonResponse.getString("kd_dist"), jsonResponse.getString("kd_tipe"),
+//                                                    jsonResponse.getInt("kd_kota"), jsonResponse.getString("nm_dist"),
+//                                                    jsonResponse.getString("almt_dist"), jsonResponse.getString("telp_dist")));
+//                                        }
+//                                    }
+//                                }
+//                                if (response.has("tipe")) {
+//                                    jsonArray = response.getJSONArray("tipe");
+//                                    for (int i = 0; i < jsonArray.length(); i++) {
+//                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                        if (jsonResponse.length() != 0) {
+//                                            tipeList.add(new Tipe(jsonResponse.getInt("id"),
+//                                                    jsonResponse.getString("nm_tipe")));
+//                                        }
+//                                    }
+//                                }
+//                                if (response.has("visitplan")) {
+//                                    jsonArray = response.getJSONArray("visitplan");
+//                                    for (int i = 0; i < jsonArray.length(); i++) {
+//                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                        if (jsonResponse.length() != 0) {
+//                                            visitPlanDbs.add(new VisitPlanDb(jsonResponse.getInt("id"),
+//                                                    jsonResponse.getInt("kd_outlet"), jsonResponse.getString("date_visit"),
+//                                                    jsonResponse.getString("date_create_visit"), jsonResponse.getInt("approve_visit"),
+//                                                    jsonResponse.getInt("status_visit"), jsonResponse.getString("date_visiting"),
+//                                                    jsonResponse.getString("skip_order_reason"), jsonResponse.getString("skip_reason")));
+//                                        }
+//                                    }
+//                                }
+//                                if (response.has("produk")) {
+//                                    jsonArray = response.getJSONArray("produk");
+//                                    for (int i = 0; i < jsonArray.length(); i++) {
+//                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                        if (jsonResponse.length() != 0) {
+//                                            produkList.add(new Produk(jsonResponse.getInt("id"), jsonResponse.getString("kd_produk"),
+//                                                    jsonResponse.getString("nm_produk")));
+//                                        }
+//                                    }
+//                                }
+//                                if (response.has("tipe_photo")) {
+//                                    jsonArray = response.getJSONArray("tipe_photo");
+//                                    for (int i = 0; i < jsonArray.length(); i++) {
+//                                        JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                        if (jsonResponse.length() != 0) {
+//                                            tipePhotos.add(new TipePhoto(jsonResponse.getInt("id"),
+//                                                    jsonResponse.getString("nama_tipe")));
+//                                        }
+//                                    }
+//                                }
+//                                databaseHandler.deleteAll();
+//                                insertCityToDB(cityList);
+//                                insertDistributorToDB(distributorList);
+//                                insertOutletToDB(outletList);
+//                                insertTipeToDB(tipeList);
+//                                insertVisitPlanToDB(visitPlanDbs);
+//                                insertProdukToDB(produkList);
+//                                insertCompetitor(competitors);
+//                                insertTipePhoto(tipePhotos);
+//                                User user = databaseHandler.getUser();
+//
+//                                //Log.d("UserData", String.valueOf(databaseHandler.getUser()));
+//
+//                                user.setStatus(1);
+//                                databaseHandler.updateUser(user);
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        } else
+//                            userNetwork.getAllData(databaseHandler.getUser().getKode(), databaseHandler.getUser().getKd_area(), this, true);
+//                    }
+//                };
+//                try {
+//                    databaseHandler.deleteAll();
+//                    Log.d("getAllData 3 >> ", String.valueOf("https://trikarya.growth.co.id/" + "getAll/" +databaseHandler.getUser().getKode()+"/"+databaseHandler.getUser().getKd_area()));
+//                    userNetwork.getAllData(databaseHandler.getUser().getKode(), databaseHandler.getUser().getKd_area(), jsonCallback, true);
+//                    break;
+//                }
+//                catch (Exception e){
+//                    e.printStackTrace();
+//                }
 
         }
         if(intent != null) {

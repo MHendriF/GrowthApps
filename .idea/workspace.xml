@@ -50,10 +50,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b58335d4-b5d5-47c8-a9fb-2dcd00b64e33" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/Master/Coordinate.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Master/Outlet.java" afterPath="$PROJECT_DIR$/app/src/main/java/Master/Outlet.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Master/ServerRequest.java" afterPath="$PROJECT_DIR$/app/src/main/java/Master/ServerRequest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/Dashboard.java" afterPath="$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/Dashboard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/MapsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/MapsActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" />
     </list>
     <ignored path="growthV1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -103,22 +104,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dashboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/Dashboard.java">
+      <file leaf-file-name="MapsActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/MapsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="193" column="37" selection-start-line="193" selection-start-column="37" selection-end-line="193" selection-end-column="37" />
-              <folding />
+            <state relative-caret-position="-171">
+              <caret line="167" column="9" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapsActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/MapsActivity.java">
+      <file leaf-file-name="Dashboard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/Dashboard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2244">
-              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-              <folding />
+            <state relative-caret-position="177">
+              <caret line="317" column="19" selection-start-line="317" selection-start-column="19" selection-end-line="317" selection-end-column="19" />
+              <folding>
+                <element signature="e#6522#6527#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ServerRequest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Master/ServerRequest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="605" column="25" selection-start-line="605" selection-start-column="25" selection-end-line="605" selection-end-column="25" />
+              <folding>
+                <element signature="e#27880#27943#0" expanded="false" />
+                <element signature="e#43997#43998#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -136,12 +154,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerRequest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/Master/ServerRequest.java">
+      <file leaf-file-name="Outlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Master/Outlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="591" column="33" selection-start-line="591" selection-start-column="33" selection-end-line="591" selection-end-column="33" />
-              <folding />
+            <state relative-caret-position="354">
+              <caret line="131" column="13" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
+              <folding>
+                <element signature="e#2449#2450#0" expanded="true" />
+                <element signature="e#2491#2492#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -2582,15 +2603,15 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_nearby_outlet.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_info.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Master/ServerRequest.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/maps/DownloadURL.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/Master/Outlet.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Master/Coordinate.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/maps/DataParser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/maps/GetNearbyPlacesData.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/Dashboard.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/MapsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_maps.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/MapsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Master/Outlet.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/Dashboard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Master/ServerRequest.java" />
       </list>
     </option>
   </component>
@@ -3185,7 +3206,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3258786" sideWeight="0.52420574" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.47881997" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.93929714" sideWeight="0.47881997" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32829046" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3258786" sideWeight="0.48335856" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290735" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
@@ -3636,17 +3657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Master/Outlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="113" column="5" selection-start-line="113" selection-start-column="5" selection-end-line="113" selection-end-column="5" />
-          <folding>
-            <element signature="e#2526#2527#0" expanded="true" />
-            <element signature="e#2557#2558#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/maps/DataParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -3654,22 +3664,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Master/ServerRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="591" column="33" selection-start-line="591" selection-start-column="33" selection-end-line="591" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/Dashboard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="193" column="37" selection-start-line="193" selection-start-column="37" selection-end-line="193" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3704,11 +3698,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Master/Outlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="131" column="13" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
+          <folding>
+            <element signature="e#2449#2450#0" expanded="true" />
+            <element signature="e#2491#2492#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/MapsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2244">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding />
+        <state relative-caret-position="-171">
+          <caret line="167" column="9" selection-start-line="167" selection-start-column="9" selection-end-line="167" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/android/trikarya/growth/Dashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="317" column="19" selection-start-line="317" selection-start-column="19" selection-end-line="317" selection-end-column="19" />
+          <folding>
+            <element signature="e#6522#6527#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Master/ServerRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="605" column="25" selection-start-line="605" selection-start-column="25" selection-end-line="605" selection-end-column="25" />
+          <folding>
+            <element signature="e#27880#27943#0" expanded="false" />
+            <element signature="e#43997#43998#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -589,91 +589,6 @@ public class ServerRequest {
         }
     }
 
-    public void getAllOutlet(final Context context, final GetAllDataCallback getAllDataCallback){
-        progressDialog.setMessage("Mohon ditunggu...");
-        progressDialog.show();
-        final ArrayList<Outlet> outletLists = new ArrayList<Outlet>();
-        Log.d("getAllData 4 >> ", String.valueOf("https://trikarya.growth.co.id/" + "getNearbyOutlet/"));
-
-        try{
-            final JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_ADDRESS + "getNearbyOutlet/",null,new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    progressDialog.dismiss();
-                    JSONObject responses = null;
-
-                    try {
-                        responses = new JSONObject(response.getString("data"));
-                        JSONArray jsonArray;
-                        //GoogleMap mMap = null;
-                        if (responses.has("outlet")) {
-                            jsonArray = responses.getJSONArray("outlet");
-                            Outlet outlets = null;
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                MarkerOptions markerOptions = new MarkerOptions();
-
-                                if (jsonResponse.length() != 0) {
-                                    outlets = new Outlet(jsonResponse.getInt("kd_outlet"),
-                                            jsonResponse.getInt("kd_kota"), jsonResponse.getInt("kd_user"),
-                                            jsonResponse.getInt("kd_dist"), jsonResponse.getString("nm_outlet"),
-                                            jsonResponse.getString("almt_outlet"), jsonResponse.getInt("kd_tipe"),
-                                            jsonResponse.getString("rank_outlet"), jsonResponse.getString("kodepos"),
-                                            jsonResponse.getString("reg_status"), jsonResponse.getString("latitude"),
-                                            jsonResponse.getString("longitude"));
-                                    outlets.setStatus_area(jsonResponse.getInt("status_area"));
-                                    outletLists.add(outlets);
-
-                                    Log.d("Outlets", String.valueOf(outlets.Callback()));
-                                    Log.d("Latitude", String.valueOf(outlets.CallbackLatitude()));
-                                    Log.d("Longitude", String.valueOf(outlets.CallbackLongitude()));
-
-                                    double lat = Double.parseDouble(outlets.CallbackLatitude());
-                                    double lng = Double.parseDouble(outlets.CallbackLongitude());
-
-                                    LatLng latLng = new LatLng(1.3521, 103.8198);
-                                    markerOptions.position(latLng);
-                                    markerOptions.title("Tes");
-                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-
-                                    mMap.addMarker(markerOptions);
-                                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                                    mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
-                                }
-
-                            }
-                            //Log.d("Outlet list", String.valueOf(outletLists));
-
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    progressDialog.dismiss();
-                    getAllDataCallback.Done(error.toString());
-                }
-            });
-
-            RequestQueue requestQueue = Volley.newRequestQueue(context, hurlStack);
-            RetryPolicy policy = new DefaultRetryPolicy(CONNECTION_TIMEOUT, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
-            jsonObjectRequest.setRetryPolicy(policy);
-            requestQueue.add(jsonObjectRequest);
-        }
-        catch (Exception e)
-        {
-            getAllDataCallback.Done(e.getMessage());
-        }
-        return;
-    }
-
-
     public void getAllData(final Context context, final User user, final GetAllDataCallback getAllDataCallback){
         progressDialog.setMessage("Mohon ditunggu...");
         progressDialog.show();
@@ -689,12 +604,133 @@ public class ServerRequest {
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, SERVER_ADDRESS + "getAll/"+user.getKode()
                     +"/"+user.getKd_area(),null,new Response.Listener<JSONObject>() {
                 @Override
+//                public void onResponse(JSONObject response) {
+//                    progressDialog.dismiss();
+//                    JSONObject responses = null;
+//                    try {
+//                        responses = new JSONObject(response.getString("data"));
+//                        JSONArray jsonArray;
+//                        if(response.has("kota")) {
+//                             jsonArray = response.getJSONArray("kota");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                if (jsonResponse.length() != 0) {
+//                                    cityList.add(new City(jsonResponse.getInt("id"),
+//                                            jsonResponse.getInt("kd_area"), jsonResponse.getString("nm_kota")));
+//                                }
+//                            }
+//                        }
+//                        if(response.has("competitor")) {
+//                            jsonArray = response.getJSONArray("competitor");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                if (jsonResponse.length() != 0) {
+//                                    competitors.add(new Competitor(jsonResponse.getInt("id"),
+//                                            jsonResponse.getInt("kd_kota"), jsonResponse.getString("nm_competitor"),
+//                                            jsonResponse.getString("alamat")));
+//                                }
+//                            }
+//                        }
+//                        if(response.has("outlet")) {
+//                            int toleransi = 0;
+//                            jsonArray = response.getJSONArray("outlet");
+//                            Outlet outlet;
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                if (jsonResponse.length() != 0) {
+//                                    toleransi = jsonResponse.getInt("toleransi_long");
+//                                    outlet = new Outlet(jsonResponse.getInt("kd_outlet"),
+//                                            jsonResponse.getInt("kd_kota"), jsonResponse.getInt("kd_user"),
+//                                            jsonResponse.getInt("kd_dist"), jsonResponse.getString("nm_outlet"),
+//                                            jsonResponse.getString("almt_outlet"), jsonResponse.getInt("kd_tipe"),
+//                                            jsonResponse.getString("rank_outlet"), jsonResponse.getString("kodepos"),
+//                                            jsonResponse.getString("reg_status"), jsonResponse.getString("latitude"),
+//                                            jsonResponse.getString("longitude"));
+//                                    outlet.setStatus_area(jsonResponse.getInt("status_area"));
+//                                    outletList.add(outlet);
+//                                }
+//                            }
+//                            user.setToleransi(toleransi);
+//                            databaseHandler.updateUser(user);
+//                        }
+//                        if(response.has("distributor")) {
+//                            jsonArray = response.getJSONArray("distributor");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                if (jsonResponse.length() != 0) {
+//                                    distributorList.add(new Distributor(jsonResponse.getInt("id"),
+//                                            jsonResponse.getString("kd_dist"), jsonResponse.getString("kd_tipe"),
+//                                            jsonResponse.getInt("kd_kota"), jsonResponse.getString("nm_dist"),
+//                                            jsonResponse.getString("almt_dist"), jsonResponse.getString("telp_dist")));
+//                                }
+//                            }
+//                        }
+//                        if(response.has("tipe")) {
+//                            jsonArray = response.getJSONArray("tipe");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                if (jsonResponse.length() != 0) {
+//                                    tipeList.add(new Tipe(jsonResponse.getInt("id"),
+//                                            jsonResponse.getString("nm_tipe")));
+//                                }
+//                            }
+//                        }
+//                        if(response.has("visitplan")) {
+//                            jsonArray = response.getJSONArray("visitplan");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                if (jsonResponse.length() != 0) {
+//                                    if(isValid(jsonResponse))
+//                                        visitPlanDbs.add(new VisitPlanDb(jsonResponse.getInt("id"),
+//                                                jsonResponse.getInt("kd_outlet"), jsonResponse.getString("date_visit"),
+//                                                jsonResponse.getString("date_create_visit"), jsonResponse.getInt("approve_visit"),
+//                                                jsonResponse.getInt("status_visit"), jsonResponse.getString("date_visiting"),
+//                                                jsonResponse.getString("skip_order_reason"), jsonResponse.getString("skip_reason")));
+//                                }
+//                            }
+//                        }
+//                        if(response.has("produk")) {
+//                            jsonArray = response.getJSONArray("produk");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                if (jsonResponse.length() != 0) {
+//                                    produkList.add(new Produk(jsonResponse.getInt("id"), jsonResponse.getString("kd_produk"),
+//                                            jsonResponse.getString("nm_produk")));
+//                                }
+//                            }
+//                        }
+//                        if(response.has("tipe_photo")) {
+//                            jsonArray = response.getJSONArray("tipe_photo");
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject jsonResponse = jsonArray.getJSONObject(i);
+//                                if (jsonResponse.length() != 0) {
+//                                    tipePhotos.add(new TipePhoto(jsonResponse.getInt("id"),
+//                                            jsonResponse.getString("nama_tipe")));
+//                                }
+//                            }
+//                        }
+//                        insertCityToDB(cityList);
+//                        insertDistributorToDB(distributorList);
+//                        insertOutletToDB(outletList);
+//                        insertTipeToDB(tipeList);
+//                        insertVisitPlanToDB(visitPlanDbs);
+//                        insertProdukToDB(produkList);
+//                        insertCompetitor(competitors);
+//                        insertTipePhoto(tipePhotos);
+//                        getAllDataCallback.Done("success");
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                        getAllDataCallback.Done(e.getMessage());
+//                    }
+//                }
                 public void onResponse(JSONObject response) {
                     progressDialog.dismiss();
+                    JSONObject response2 = null;
                     try {
+                        response2 = new JSONObject(response.getString("data"));
                         JSONArray jsonArray;
-                        if(response.has("kota")) {
-                             jsonArray = response.getJSONArray("kota");
+                        if(response2.has("kota")) {
+                            jsonArray = response2.getJSONArray("kota");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonResponse = jsonArray.getJSONObject(i);
                                 if (jsonResponse.length() != 0) {
@@ -703,8 +739,8 @@ public class ServerRequest {
                                 }
                             }
                         }
-                        if(response.has("competitor")) {
-                            jsonArray = response.getJSONArray("competitor");
+                        if(response2.has("competitor")) {
+                            jsonArray = response2.getJSONArray("competitor");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonResponse = jsonArray.getJSONObject(i);
                                 if (jsonResponse.length() != 0) {
@@ -714,9 +750,9 @@ public class ServerRequest {
                                 }
                             }
                         }
-                        if(response.has("outlet")) {
+                        if(response2.has("outlet")) {
                             int toleransi = 0;
-                            jsonArray = response.getJSONArray("outlet");
+                            jsonArray = response2.getJSONArray("outlet");
                             Outlet outlet;
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonResponse = jsonArray.getJSONObject(i);
@@ -736,8 +772,8 @@ public class ServerRequest {
                             user.setToleransi(toleransi);
                             databaseHandler.updateUser(user);
                         }
-                        if(response.has("distributor")) {
-                            jsonArray = response.getJSONArray("distributor");
+                        if(response2.has("distributor")) {
+                            jsonArray = response2.getJSONArray("distributor");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonResponse = jsonArray.getJSONObject(i);
                                 if (jsonResponse.length() != 0) {
@@ -748,8 +784,8 @@ public class ServerRequest {
                                 }
                             }
                         }
-                        if(response.has("tipe")) {
-                            jsonArray = response.getJSONArray("tipe");
+                        if(response2.has("tipe")) {
+                            jsonArray = response2.getJSONArray("tipe");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonResponse = jsonArray.getJSONObject(i);
                                 if (jsonResponse.length() != 0) {
@@ -758,8 +794,8 @@ public class ServerRequest {
                                 }
                             }
                         }
-                        if(response.has("visitplan")) {
-                            jsonArray = response.getJSONArray("visitplan");
+                        if(response2.has("visitplan")) {
+                            jsonArray = response2.getJSONArray("visitplan");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonResponse = jsonArray.getJSONObject(i);
                                 if (jsonResponse.length() != 0) {
@@ -772,8 +808,8 @@ public class ServerRequest {
                                 }
                             }
                         }
-                        if(response.has("produk")) {
-                            jsonArray = response.getJSONArray("produk");
+                        if(response2.has("produk")) {
+                            jsonArray = response2.getJSONArray("produk");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonResponse = jsonArray.getJSONObject(i);
                                 if (jsonResponse.length() != 0) {
@@ -782,8 +818,8 @@ public class ServerRequest {
                                 }
                             }
                         }
-                        if(response.has("tipe_photo")) {
-                            jsonArray = response.getJSONArray("tipe_photo");
+                        if(response2.has("tipe_photo")) {
+                            jsonArray = response2.getJSONArray("tipe_photo");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonResponse = jsonArray.getJSONObject(i);
                                 if (jsonResponse.length() != 0) {

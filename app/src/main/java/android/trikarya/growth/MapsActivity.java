@@ -33,8 +33,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
-        GoogleMap.OnMarkerClickListener,
-        GoogleMap.OnMarkerDragListener{
+        GoogleMap.OnMarkerClickListener{
 
     private GoogleMap mMap;
     private GoogleApiClient client;
@@ -152,21 +151,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     @Override
-    public void onMarkerDragStart(Marker marker) {
-
-    }
-
-    @Override
-    public void onMarkerDrag(Marker marker) {
-
-    }
-
-    @Override
-    public void onMarkerDragEnd(Marker marker) {
-
-    }
-
-    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -182,10 +166,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 mMap.setMyLocationEnabled(true);
             }
         }
-
-        mMap.setOnMarkerDragListener(this);
         mMap.setOnMarkerClickListener(this);
-
     }
 
     private String getUrl(String lat, String lng, int PROXIMITY_RADIUS)
