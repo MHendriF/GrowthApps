@@ -11,6 +11,7 @@ public class Outlet {
     private int tipe;
     private int status_area;
     private String nama,alamat,rank,telpon,reg_status,longitude,latitude;
+
     public Outlet(int kd,int kd_kota,int kd_user,int kode_distributor,String nama, String alamat, int tipe, String rank, String telpon, String reg_status, String latitude, String longitude){
         setKode(kd);
         setKode_kota(kd_kota);

@@ -25,40 +25,15 @@ public class DataParser {
 
         Log.d("DataParser","jsonobject = "+googlePlaceJson.toString());
 
-//        try {
-//            if (!googlePlaceJson.isNull("name")){
-//                placeName = googlePlaceJson.getString("name");
-//            }
-//            if (!googlePlaceJson.isNull("vicinity")){
-//                vicinity = googlePlaceJson.getString("vicinity");
-//            }
-//            latitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lat");
-//            longitude = googlePlaceJson.getJSONObject("geometry").getJSONObject("location").getString("lng");
-//
-//            reference = googlePlaceJson.getString("reference");
-//
-//            googlePlacesMap.put("place_name", placeName);
-//            googlePlacesMap.put("vicinity", vicinity);
-//            googlePlacesMap.put("lat", latitude);
-//            googlePlacesMap.put("lng", longitude);
-//            googlePlacesMap.put("reference", reference);
-//
-//        }
-//        catch (JSONException e){
-//            e.printStackTrace();
-//        }
         try {
             if (!googlePlaceJson.isNull("nm_outlet")){
                 placeName = googlePlaceJson.getString("nm_outlet");
-                Log.d("nama outlet", placeName);
             }
             if (!googlePlaceJson.isNull("almt_outlet")){
                 address = googlePlaceJson.getString("almt_outlet");
             }
             latitude = googlePlaceJson.getString("latitude");
             longitude = googlePlaceJson.getString("longitude");
-
-            //reference = googlePlaceJson.getString("reference");
 
             googlePlacesMap.put("nm_outlet", placeName);
             googlePlacesMap.put("almt_outlet", address);
@@ -99,11 +74,8 @@ public class DataParser {
 
         try {
             jsonObject = new JSONObject(jsonData);
-            //jsonArray = jsonObject.getJSONArray("results");
             jsonObj = jsonObject.getJSONObject("data");
-            //Log.d("json data2", String.valueOf(jsonObj));
             jsonArray = jsonObj.getJSONArray("outlet");
-            //Log.d("json array", String.valueOf(jsonArray));
         } catch (JSONException e) {
             e.printStackTrace();
         }

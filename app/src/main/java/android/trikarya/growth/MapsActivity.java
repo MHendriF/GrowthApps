@@ -1,8 +1,5 @@
 package android.trikarya.growth;
 
-import android.*;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -14,18 +11,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -40,17 +29,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import Master.GetAllDataCallback;
-import Master.GetVisitPlanCallback;
-import Master.Outlet;
-import Master.ServerRequest;
+import Master.Coordinate;
 import maps.GetNearbyPlacesData;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
@@ -66,18 +45,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Location lastLocation;
     private Marker currentLocationMarker;
     public static final int REQUEST_LOCATION_CODE = 99;
-    int PROXIMITY_RADIUS = 10000;
+    int PROXIMITY_RADIUS = 2000;
     double latitude,longitude;
+    Coordinate coordinate;
 
-    ServerRequest serverRequest;
-    ProgressDialog progressDialog;
-    int CONNECTION_TIMEOUT = 1000*90;
-    HurlStack hurlStack;
+    String lat, lng;
 
     @Override
     public void onBackPressed() {
         finish();
-        super.onBackPressed();
+        startActivity(new Intent(this, Dashboard.class));
     }
 
     @Override
@@ -141,7 +118,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (currentLocationMarker != null){
             currentLocationMarker.remove();
         }
-        Log.d("lat = ",""+latitude);
+
+        coordinate = new Coordinate(latitude, longitude);
 
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
@@ -158,6 +136,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             LocationServices.FusedLocationApi.removeLocationUpdates(client, this);
             mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         }
+
+        //Show Nearby Outlets
+        Object dataTransfer[] = new Object[2];
+        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData(this);
+
+        lat = String.valueOf(latitude);
+        lng = String.valueOf(longitude);
+
+        String url = getUrl(lat, lng, PROXIMITY_RADIUS);
+        dataTransfer[0] = mMap;
+        dataTransfer[1] = url;
+        getNearbyPlacesData.execute(dataTransfer);
 
     }
 
@@ -201,39 +191,34 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mMap.setOnMarkerDragListener(this);
         mMap.setOnMarkerClickListener(this);
-    }
-
-    public void onPress(View v)
-    {
-        Object dataTransfer[] = new Object[2];
-        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
-
-        switch (v.getId())
-        {
-            case R.id.showNearby:
-                //getNearbyOutlet(0);
-                mMap.clear();
-                String hospital = "hospital";
-                String url = getUrl(latitude, longitude, hospital);
-                dataTransfer[0] = mMap;
-                dataTransfer[1] = url;
-                getNearbyPlacesData.execute(dataTransfer);
-                Toast.makeText(MapsActivity.this, "Showing Nearby Outlet", Toast.LENGTH_SHORT).show();
-                break;
-        }
 
     }
 
-    private String getUrl(double latitude , double longitude , String nearbyPlace)
+//    public void onPress(View v)
+//    {
+//        Object dataTransfer[] = new Object[2];
+//        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData(this);
+//
+//        switch (v.getId())
+//        {
+//            case R.id.showNearby:
+//                lat = String.valueOf(coordinate.getLatitude());
+//                lng = String.valueOf(coordinate.getLongitude());
+//
+//                String url = getUrl(lat, lng, PROXIMITY_RADIUS);
+//                dataTransfer[0] = mMap;
+//                dataTransfer[1] = url;
+//                getNearbyPlacesData.execute(dataTransfer);
+//                break;
+//        }
+//
+//    }
+
+    private String getUrl(String lat, String lng, int PROXIMITY_RADIUS)
     {
 
-        StringBuilder googlePlaceUrl = new StringBuilder("https://trikarya.growth.co.id/getNearbyOutlet/");
-//        StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-//        googlePlaceUrl.append("location="+latitude+","+longitude);
-//        googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
-//        googlePlaceUrl.append("&type="+nearbyPlace);
-//        googlePlaceUrl.append("&sensor=true");
-//        googlePlaceUrl.append("&key="+"AIzaSyBLEPBRfw7sMb73Mr88L91Jqh3tuE4mKsE");
+        StringBuilder googlePlaceUrl = new StringBuilder("https://trikarya.growth.co.id/getCoordinate/");
+        googlePlaceUrl.append(lat+"/"+lng+"/"+PROXIMITY_RADIUS);
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
 
@@ -250,5 +235,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         client.connect();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return true;
+    }
 
 }

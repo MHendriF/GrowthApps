@@ -1,7 +1,10 @@
 package maps;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.trikarya.growth.MapsActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,6 +25,12 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
     String googlePlacesData;
     GoogleMap mMap;
     String url;
+    int PROXIMITY_RADIUS = 2000;
+
+    private static Context context;
+    public GetNearbyPlacesData(Context c) {
+        context = c;
+    }
 
     @Override
     protected String doInBackground(Object... objects) {
@@ -59,11 +68,10 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
                 double lat = Double.parseDouble(googlePlace.get("latitude"));
                 double lng = Double.parseDouble(googlePlace.get("longitude"));
 
-                Log.d("place", placeName);
-
                 LatLng latLng = new LatLng(lat, lng);
                 markerOptions.position(latLng);
-                markerOptions.title(placeName + " : " + address);
+                markerOptions.title(placeName);
+                markerOptions.snippet(address);
                 markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
 
                 mMap.addMarker(markerOptions);
@@ -71,6 +79,12 @@ public class GetNearbyPlacesData extends AsyncTask<Object, String, String> {
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(10));
             }
             Log.d("Max outlet", String.valueOf(nearbyPlaceList.size()));
+            if(nearbyPlaceList.size() == 0){
+                Toast.makeText(context, "Tidak ada outlet disekitar anda", Toast.LENGTH_SHORT).show();
+            }
+            else if (nearbyPlaceList.size() > 0){
+                Toast.makeText(context, "Menampilkan outlet disekitar anda dalam radius "+PROXIMITY_RADIUS+"  meter", Toast.LENGTH_SHORT).show();
+            }
         }
         else {
             Log.d("NUll", "ada null lagi");
