@@ -20,9 +20,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import Master.City;
-import Master.DatabaseHandler;
-import Master.Distributor;
+import master.City;
+import master.DatabaseHandler;
+import master.Distributor;
 /**
  *   PT Trikarya Teknologi
  */

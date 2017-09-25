@@ -33,10 +33,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import Master.City;
-import Master.Competitor;
-import Master.DatabaseHandler;
-import Master.PhotoActivity;
+import master.City;
+import master.Competitor;
+import master.DatabaseHandler;
+import master.PhotoActivity;
 
 /**
  *   PT Trikarya Teknologi

@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import Master.City;
-import Master.DatabaseHandler;
-import Master.Outlet;
-import Master.Tipe;
+import master.City;
+import master.DatabaseHandler;
+import master.Outlet;
+import master.Tipe;
 /**
  *   PT Trikarya Teknologi
  */

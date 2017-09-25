@@ -16,11 +16,11 @@ import android.widget.Toast;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-import Master.DatabaseHandler;
-import Master.Logging;
-import Master.PhotoActivity;
-import Master.ServerRequest;
-import Master.StoreOutletCalback;
+import master.DatabaseHandler;
+import master.Logging;
+import master.PhotoActivity;
+import master.ServerRequest;
+import master.StoreOutletCalback;
 
 
 /**

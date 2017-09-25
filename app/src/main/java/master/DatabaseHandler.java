@@ -1,4 +1,4 @@
-package Master;
+package master;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,6 +15,10 @@ import java.util.List;
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
+    private String createBanner = "CREATE TABLE " + Banner.TABLE_NAME+
+            "(" + Banner.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+            + Banner.COLUMN_FOTO + " TEXT NOT NULL,"
+            + Banner.COLUMN_TANGGAL + " TEXT NOT NULL)";
     private static final String DATABASE_NAME = "growthco_demoDB",
             KEY_KODE_AREA = "kd_area",
             KEY_TOLERANSI = "toleransi",
@@ -180,6 +184,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_SKIP_REASON + " REAL NOT NULL)");
         db.execSQL("CREATE TABLE " + TABLE_KONFIGURASI +
                 "(" + KEY_STATUS_APP + " INTEGER DEFAULT 0)");
+        db.execSQL(createBanner);
     }
 
     @Override
@@ -964,6 +969,63 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close();
         return count;
     }
+
+    public void createBanner(Banner banner)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Banner.COLUMN_FOTO,banner.getImage());
+        values.put(Banner.COLUMN_TANGGAL,banner.getTanggal());
+        db.insert(Banner.TABLE_NAME, null, values);
+        values.clear();
+        db.close();
+    }
+
+    public Banner getBanner(int id)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Banner banner = null;
+        Cursor cursor = db.query(Banner.TABLE_NAME, new String[]{Banner.COLUMN_ID, Banner.COLUMN_FOTO , Banner.COLUMN_TANGGAL}, Banner.COLUMN_ID + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if(cursor==null)
+            return null;
+        if(cursor.moveToFirst()){
+            banner = new Banner(cursor.getInt(0),cursor.getString(1), cursor.getString(2));
+        }
+        cursor.close();
+        db.close();
+        return banner;
+    }
+
+    public List<Banner> getAllBanner() {
+        SQLiteDatabase db = getReadableDatabase();
+        List<Banner> banners = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Banner.TABLE_NAME , null);
+        if(cursor.moveToFirst())
+            do{
+                banners.add(new Banner(cursor.getInt(0),cursor.getString(1), cursor.getString(2)));
+            }while (cursor.moveToNext());
+        cursor.close();
+        db.close();
+        return banners;
+    }
+
+    public void deleteAllBanner()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(Banner.TABLE_NAME, null, null);
+        db.close();
+    }
+
+    public int getBannerCount()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + Banner.TABLE_NAME, null);
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        return count;
+    }
+
     public void deleteAll(){
         this.deleteCity();
         this.deleteDistributor();
@@ -974,5 +1036,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         this.deleteProduk();
         this.deleteCompetitor();
         this.deleteAllPhoto();
+        this.deleteAllBanner();
     }
 }

@@ -23,6 +23,9 @@
     <color name="softred">#FFD9E3</color>
     <color name="lemahteles">#333</color>
 
+    <color name="indicator_aktif">#FFFFFF</color>
+    <color name="indicator_pasif">#78828A</color>
+
 
 
     <color name="youngpurple">#9F93CC</color>

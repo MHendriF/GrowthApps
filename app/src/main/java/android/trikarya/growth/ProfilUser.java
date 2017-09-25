@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import Master.DatabaseHandler;
-import Master.User;
+import master.DatabaseHandler;
+import master.User;
 /**
  *   PT Trikarya Teknologi
  */

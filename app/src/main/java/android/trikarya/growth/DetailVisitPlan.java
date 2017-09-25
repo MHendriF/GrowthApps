@@ -8,11 +8,11 @@ import android.widget.TextView;
 
 import java.text.DateFormatSymbols;
 
-import Master.City;
-import Master.DatabaseHandler;
-import Master.Outlet;
-import Master.Tipe;
-import Master.VisitPlanDb;
+import master.City;
+import master.DatabaseHandler;
+import master.Outlet;
+import master.Tipe;
+import master.VisitPlanDb;
 /**
  *   PT Trikarya Teknologi
  */

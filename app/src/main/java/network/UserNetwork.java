@@ -32,4 +32,12 @@ public class UserNetwork extends BaseNetwork{
             //Log.d("getAllData 2 >> ", String.valueOf(SERVER_ADDRESS + "getAll/" +id+"/"+area));
         }
     }
+    public void getBanner(JsonCallback jsonCallback){
+        try{
+            connectionHandler.MakeConnection(ConnectionHandler.get_method, "banner",null,jsonCallback);
+            Log.d("Goto >>>", SERVER_ADDRESS+"banner");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

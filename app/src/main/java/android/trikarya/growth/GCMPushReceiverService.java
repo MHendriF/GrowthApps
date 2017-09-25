@@ -12,8 +12,8 @@ import com.google.android.gms.gcm.GcmListenerService;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import Master.DatabaseHandler;
-import Master.VisitPlanDb;
+import master.DatabaseHandler;
+import master.VisitPlanDb;
 
 /**
  *   PT Trikarya Teknologi

@@ -16,12 +16,12 @@ import android.widget.Toast;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-import Master.DatabaseHandler;
-import Master.Logging;
-import Master.ServerRequest;
-import Master.StoreOutletCalback;
-import Master.TakeOrder;
-import Master.VisitPlanDb;
+import master.DatabaseHandler;
+import master.Logging;
+import master.ServerRequest;
+import master.StoreOutletCalback;
+import master.TakeOrder;
+import master.VisitPlanDb;
 
 /**
  *   PT Trikarya Teknologi

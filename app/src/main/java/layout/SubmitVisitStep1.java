@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import Master.DatabaseHandler;
-import Master.Distributor;
-import Master.Outlet;
-import Master.VisitPlanDb;
+import master.DatabaseHandler;
+import master.Distributor;
+import master.Outlet;
+import master.VisitPlanDb;
 
 
 /**

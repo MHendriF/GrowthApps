@@ -1,5 +1,6 @@
 package android.trikarya.growth;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -43,7 +45,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static final int REQUEST_LOCATION_CODE = 99;
     int PROXIMITY_RADIUS = 2000;
     double latitude,longitude;
-
+    ProgressDialog progressDialog;
     String lat, lng;
 
     @Override
@@ -61,6 +63,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             checkLocationPermission();
 
         }
+
+        progressDialog  = new ProgressDialog(this);
+        progressDialog.setTitle("Location Getter");
+        progressDialog.setMessage("Mencari lokasi outlet terdekat, Mohon Ditunggu...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -101,7 +110,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        Toast.makeText(MapsActivity.this, "Tidak bisa menemukan lokasi. Silahkan periksa koneksi internet anda!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -141,6 +150,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         dataTransfer[0] = mMap;
         dataTransfer[1] = url;
         getNearbyPlacesData.execute(dataTransfer);
+        progressDialog.dismiss();
 
     }
 
@@ -171,12 +181,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private String getUrl(String lat, String lng, int PROXIMITY_RADIUS)
     {
-
         StringBuilder googlePlaceUrl = new StringBuilder("https://trikarya.growth.co.id/getCoordinate/");
         googlePlaceUrl.append(lat+"/"+lng+"/"+PROXIMITY_RADIUS);
 
         Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
-
         return googlePlaceUrl.toString();
     }
 

@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import Master.DatabaseHandler;
-import Master.Outlet;
-import Master.VisitPlanDb;
+import master.DatabaseHandler;
+import master.Outlet;
+import master.VisitPlanDb;
 /**
  *   PT Trikarya Teknologi
  */

@@ -32,9 +32,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import Master.DatabaseHandler;
-import Master.Outlet;
-import Master.TipePhoto;
+import master.DatabaseHandler;
+import master.Outlet;
+import master.TipePhoto;
 
 /**
  *   PT Trikarya Teknologi

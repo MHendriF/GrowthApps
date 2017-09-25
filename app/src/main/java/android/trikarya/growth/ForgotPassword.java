@@ -10,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import Master.GetAllDataCallback;
-import Master.ServerRequest;
+import master.GetAllDataCallback;
+import master.ServerRequest;
 /**
  *   PT Trikarya Teknologi
  */

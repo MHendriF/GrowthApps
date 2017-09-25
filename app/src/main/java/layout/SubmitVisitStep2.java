@@ -11,9 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import Master.City;
-import Master.DatabaseHandler;
-import Master.Tipe;
+import master.City;
+import master.DatabaseHandler;
+import master.Tipe;
 
 
 /**

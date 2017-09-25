@@ -17,7 +17,7 @@ import android.widget.EditText;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-import Master.DatabaseHandler;
+import master.DatabaseHandler;
 
 /**
  *   PT Trikarya Teknologi

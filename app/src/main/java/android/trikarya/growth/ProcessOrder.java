@@ -17,13 +17,13 @@ import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.List;
 
-import Master.DatabaseHandler;
-import Master.Logging;
-import Master.Produk;
-import Master.ServerRequest;
-import Master.StoreOutletCalback;
-import Master.TakeOrder;
-import Master.VisitPlanDb;
+import master.DatabaseHandler;
+import master.Logging;
+import master.Produk;
+import master.ServerRequest;
+import master.StoreOutletCalback;
+import master.TakeOrder;
+import master.VisitPlanDb;
 /**
  *   PT Trikarya Teknologi
  */

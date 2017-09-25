@@ -17,10 +17,10 @@ import com.google.android.gms.iid.InstanceID;
 
 import java.io.IOException;
 
-import Master.DatabaseHandler;
-import Master.GetAllDataCallback;
-import Master.ServerRequest;
-import Master.User;
+import master.DatabaseHandler;
+import master.GetAllDataCallback;
+import master.ServerRequest;
+import master.User;
 
 /**
  *   PT Trikarya Teknologi

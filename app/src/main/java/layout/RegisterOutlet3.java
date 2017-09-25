@@ -18,12 +18,12 @@ import android.widget.EditText;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 
-import Master.DatabaseHandler;
-import Master.Logging;
-import Master.Outlet;
-import Master.ServerRequest;
-import Master.StoreOutletCalback;
-import Master.VisitPlanDb;
+import master.DatabaseHandler;
+import master.Logging;
+import master.Outlet;
+import master.ServerRequest;
+import master.StoreOutletCalback;
+import master.VisitPlanDb;
 
 /**
  *   PT Trikarya Teknologi

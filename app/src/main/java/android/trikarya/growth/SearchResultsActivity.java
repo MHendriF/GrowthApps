@@ -12,8 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import Master.DatabaseHandler;
-import Master.Outlet;
+import master.DatabaseHandler;
+import master.Outlet;
 /**
  *   PT Trikarya Teknologi
  */

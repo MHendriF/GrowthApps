@@ -23,8 +23,8 @@ import android.widget.Toast;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
-import Master.DatabaseHandler;
-import Master.Tipe;
+import master.DatabaseHandler;
+import master.Tipe;
 
 /**
  *   PT Trikarya Teknologi

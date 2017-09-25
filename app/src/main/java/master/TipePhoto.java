@@ -1,4 +1,4 @@
-package Master;
+package master;
 
 /**
  *   PT Trikarya Teknologi on 4/29/2016.

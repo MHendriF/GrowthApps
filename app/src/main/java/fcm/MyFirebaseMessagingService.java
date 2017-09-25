@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
-import android.trikarya.growth.Dashboard;
 import android.trikarya.growth.R;
 import android.trikarya.growth.VisitPlan;
 import android.util.Log;
@@ -13,15 +12,12 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Map;
 
-import Master.DatabaseHandler;
-import Master.VisitPlanDb;
-
-import static android.R.attr.data;
+import master.DatabaseHandler;
+import master.VisitPlanDb;
 
 /**
  * Created by Hendry on 8/28/2017.
@@ -47,10 +43,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             Map<String, String> params = remoteMessage.getData();
             JSONObject objects = new JSONObject(params);
             Log.d("JSON_OBJECT", objects.toString());
-            //JSONObject json2 = object.getJSONObject("data");
-            //String test = (String) object.get("status");
-            //String tipe = params.get("type").toString();
-            //Log.e("Tipe", test);
         }catch (Exception e){
 
         }
@@ -158,20 +150,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             }
 
         }
-//        else{
-//            intent = new Intent(this, Dashboard.class);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            int requestCode = 0;
-//            PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
-//            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-//                    .setSmallIcon(R.mipmap.ic_launcher)
-//                    .setContentTitle(title)
-//                    .setContentText(notify)
-//                    .setAutoCancel(true)
-//                    .setContentIntent(pendingIntent);
-//            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//            notificationManager.notify(0,notificationBuilder.build());
-//        }
 
     }
 }
