@@ -1,14 +1,18 @@
 <resources>
+    <string name="beranda">Beranda</string>
+    <string name="news">News</string>
+    <string name="logout">Log Out</string>
+    <string name="takeOrder">Take Order</string>
     <string name="app_name">Growth Sales App</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="signin">Sign In</string>
     <string name="signout">Sign Out</string>
     <string name="forgot">forgot password?</string>
-    <string name="submitVisit">Submit</string>
-    <string name="visitPlan">Kunjungan</string>
-    <string name="outletList">List Klien</string>
-    <string name="takePhoto">Ambil Photo</string>
+    <string name="submitVisit">Submit Visit</string>
+    <string name="visitPlan">Visit Plan</string>
+    <string name="outletList">Outlet List</string>
+    <string name="takePhoto">Take Photo</string>
     <string name="history">History</string>
     <string name="draft">Draft Photo</string>
     <string name="info">Info</string>
@@ -36,6 +40,7 @@
     <string name="note">Keterangan</string>
     <string name="profile">My Profile</string>
     <string name="about">About</string>
+    <string name="nearby">Nearby Outlet</string>
     <string name="competitor">Competitor Photo</string>
     <string name="brand">Nama Brand</string>
     <string name="registerOutlet">Daftar Klien</string>
@@ -54,6 +59,8 @@
     <string name="enter_date">Enter Tgl Kunjungan</string>
     <string name="action_settings">Settings</string>
     <string name="search_hint">Cari Klien</string>
+    <string name="copyright_front">Copyright \u00A9</string>
+    <string name="copyright_back">PT. Trikarya Teknologi Indonesia</string>
 
     <!--- ABOUT APPLICATION -->
     <string name="about_app">
@@ -69,6 +76,7 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="title_tab_news">Informasi, Bantuan, Q&amp;A Sistem</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_info">Info</string>
     <string name="title_activity_outlet_list">Klien List</string>

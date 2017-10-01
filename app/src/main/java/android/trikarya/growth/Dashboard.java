@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import adapter.BannerAdapter;
+import fragment.DashboardFragment;
+import fragment.NewsFragment;
 import master.Banner;
 import master.DatabaseHandler;
 import master.GetAllDataCallback;
@@ -41,9 +44,6 @@ import network.ConnectionHandler;
 import network.JsonCallback;
 import network.UserNetwork;
 import utility.ImageHelper;
-
-import static android.R.attr.width;
-import static android.trikarya.growth.R.drawable.cal;
 
 /**
  *   PT Trikarya Teknologi
@@ -67,12 +67,14 @@ public class Dashboard extends AppCompatActivity
         List<Banner> banners;
         View ind1, ind2, ind3, aktif;
         int width;
+        LinearLayout beranda, news;
+    int activeTab = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(android.trikarya.growth.R.layout.activity_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(android.trikarya.growth.R.id.toolbar);
+        setContentView(R.layout.activity_dashboard);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         bitmaps = new ArrayList<>();
@@ -81,7 +83,7 @@ public class Dashboard extends AppCompatActivity
         this.getWindowManager().getDefaultDisplay().getSize(size);
         width = size.x;
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(android.trikarya.growth.R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, android.trikarya.growth.R.string.navigation_drawer_open, android.trikarya.growth.R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
@@ -130,6 +132,14 @@ public class Dashboard extends AppCompatActivity
             }
         }
 
+        beranda = (LinearLayout) findViewById(R.id.beranda);
+        news = (LinearLayout) findViewById(R.id.news);
+        bitmaps = new ArrayList<>();
+        if (getIntent().hasExtra("tipe") && getIntent().getStringExtra("tipe").toString().equals("news")) {
+            selectTab(news);
+        } else
+            selectTab(beranda);
+
         //if(banners.size() == 0 ){
             //banners = databaseHandler.getAllBanner();
             userNetwork.getBanner(new JsonCallback() {
@@ -167,6 +177,28 @@ public class Dashboard extends AppCompatActivity
                 }
             });
         //}
+    }
+
+    public void selectTab(View view) {
+        view.setActivated(true);
+        if(activeTab != view.getId()) {
+            switch (view.getId()) {
+                case R.id.beranda:
+                    DashboardFragment dashboardFragment = new DashboardFragment();
+                    //Log.d("masuk", "basong");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_dashboard, dashboardFragment).commit();
+                    break;
+                case R.id.news:
+                    NewsFragment newsFragment = new NewsFragment();
+                    Log.d("masuk", "sundel");
+                    //DashboardFragment dashboardFragments = new DashboardFragment();
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.frame_dashboard, newsFragment).commit();
+                    break;
+            }
+            if (activeTab != 0)
+                findViewById(activeTab).setActivated(false);
+            activeTab = view.getId();
+        }
     }
 
     private void instanceBanner(){
@@ -270,9 +302,6 @@ public class Dashboard extends AppCompatActivity
             case android.trikarya.growth.R.id.dash_draft:
                 intent = new Intent(this,Draft.class);
                 break;
-            case R.id.dash_nearby:
-                intent = new Intent(this,MapsActivity.class);
-                break;
             default:
                 intent = null;
                 databaseHandler.deleteAll();
@@ -330,6 +359,10 @@ public class Dashboard extends AppCompatActivity
         }
         else if (id == android.trikarya.growth.R.id.nav_history) {
             startActivity(new Intent(this, History.class));
+            this.finish();
+        }
+        else if (id == android.trikarya.growth.R.id.nav_nearby) {
+            startActivity(new Intent(this,NearbyOutletActivity.class));
             this.finish();
         }
         else if (id == android.trikarya.growth.R.id.nav_logout) {

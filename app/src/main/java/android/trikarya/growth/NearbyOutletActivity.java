@@ -9,10 +9,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -31,7 +35,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import maps.GetNearbyPlacesData;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,
+public class NearbyOutletActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
@@ -49,19 +53,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     String lat, lng;
 
     @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(this, Dashboard.class));
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_bar_no_icon);
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.title)).setText("NEARBY OUTLET");
+        ((LinearLayout) getSupportActionBar().getCustomView().findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             checkLocationPermission();
-
         }
 
         progressDialog  = new ProgressDialog(this);
@@ -74,6 +82,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     private boolean checkLocationPermission() {
@@ -110,7 +124,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toast.makeText(MapsActivity.this, "Tidak bisa menemukan lokasi. Silahkan periksa koneksi internet anda!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(NearbyOutletActivity.this, "Tidak bisa menemukan lokasi. Silahkan periksa koneksi internet anda!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -184,7 +198,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         StringBuilder googlePlaceUrl = new StringBuilder("https://trikarya.growth.co.id/getCoordinate/");
         googlePlaceUrl.append(lat+"/"+lng+"/"+PROXIMITY_RADIUS);
 
-        Log.d("MapsActivity", "url = "+googlePlaceUrl.toString());
+        Log.d("NearbyOutletActivity", "url = "+googlePlaceUrl.toString());
         return googlePlaceUrl.toString();
     }
 

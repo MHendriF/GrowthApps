@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -36,10 +37,22 @@ public class Draft extends AppCompatActivity {
     ListView listView;
     List<PhotoActivity> fromDatabase;
     Calendar calendar = Calendar.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(android.trikarya.growth.R.layout.activity_draft);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_bar_no_icon);
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.title)).setText("DRAFT PHOTO");
+        ((LinearLayout) getSupportActionBar().getCustomView().findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         listView = (ListView) findViewById(android.trikarya.growth.R.id.draft_list);
         databaseHandler = new DatabaseHandler(this);
         instanceView();
@@ -48,7 +61,7 @@ public class Draft extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        startActivity(new Intent(this, Dashboard.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     public void instanceView()

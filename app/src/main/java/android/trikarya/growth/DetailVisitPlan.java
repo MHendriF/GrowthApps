@@ -1,9 +1,12 @@
 package android.trikarya.growth;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.DateFormatSymbols;
@@ -25,15 +28,20 @@ public class DetailVisitPlan extends AppCompatActivity {
     TextView nama,alamat,telp,ranking,kota,tipe,tgl;
 
     @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(this, VisitPlan.class));
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(android.trikarya.growth.R.layout.activity_detail_visit_plan);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_bar_no_icon);
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.title)).setText("DETAIL VISIT PLAN");
+        ((LinearLayout) getSupportActionBar().getCustomView().findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         databaseHandler = new DatabaseHandler(this);
         visitPlanDb = databaseHandler.getVisitPlan((Integer) getIntent().getSerializableExtra("kd_visitplan"));
         if(visitPlanDb != null) {
@@ -64,6 +72,13 @@ public class DetailVisitPlan extends AppCompatActivity {
             tgl.setText(tgl.getText().toString()+" "+tmp);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this, VisitPlan.class));
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

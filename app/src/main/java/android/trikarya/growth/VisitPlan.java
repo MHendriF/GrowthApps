@@ -3,6 +3,7 @@ package android.trikarya.growth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,15 +31,20 @@ public class VisitPlan extends AppCompatActivity {
     List<Outlet> outlets;
 
     @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(this, Dashboard.class));
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visit_plan);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_bar_no_icon);
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.title)).setText("VISIT PLAN LIST");
+        ((LinearLayout) getSupportActionBar().getCustomView().findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         listView = (ListView) findViewById(R.id.visitplan_list);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.vp_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +59,13 @@ public class VisitPlan extends AppCompatActivity {
         terpilih = new ArrayList<VisitPlanDb>();
         instanceView();
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
     public void instanceView()
     {
         fromDatabase = databaseHandler.getAllVisitPlan();

@@ -3,10 +3,12 @@ package android.trikarya.growth;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import layout.Competitor1;
@@ -21,15 +23,20 @@ public class TakePhoto extends AppCompatActivity {
     TextView tv_outlet,tv_competitor;
 
     @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(this, Dashboard.class));
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(android.trikarya.growth.R.layout.activity_take_photo);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_bar_no_icon);
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.title)).setText("TAKE PHOTO");
+        ((LinearLayout) getSupportActionBar().getCustomView().findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         fragmentManager = getSupportFragmentManager();
         outlet = (View) findViewById(android.trikarya.growth.R.id.v_outlet);
         competitor = (View) findViewById(android.trikarya.growth.R.id.v_competitor);
@@ -37,6 +44,13 @@ public class TakePhoto extends AppCompatActivity {
         tv_competitor = (TextView) findViewById(android.trikarya.growth.R.id.tv_info);
         loadFragment(1);
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
     public void selectFragment(View v)
     {
         switch (v.getId())

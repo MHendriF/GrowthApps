@@ -91,7 +91,7 @@ public class Login extends AppCompatActivity {
         DatabaseHandler databaseHandler = new DatabaseHandler(this);
         databaseHandler.createUser(returnedUser);
         this.finish();
-        startActivity(new Intent(this, Dashboard.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     private void showError() {

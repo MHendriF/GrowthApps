@@ -2,6 +2,7 @@ package android.trikarya.growth;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,10 +29,22 @@ public class OutletSearch extends AppCompatActivity {
     List<VisitPlanDb> visitPlanDbs, visitPlanTerpakai;
     Button load ;
     String tipe;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(android.trikarya.growth.R.layout.activity_outlet_search);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_bar_no_icon);
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.title)).setText("SEARCH OUTLET");
+        ((LinearLayout) getSupportActionBar().getCustomView().findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         tipe = getIntent().getStringExtra("tipe");
         listView = (ListView) findViewById(android.trikarya.growth.R.id.os_outlet_list);
         load = (Button) findViewById(android.trikarya.growth.R.id.os_load_more);
@@ -45,6 +58,13 @@ public class OutletSearch extends AppCompatActivity {
         outletPart = new ArrayList<Outlet>();
         instanceView();
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
+    }
+
     public void instanceView()
     {
         if(fromDatabase == null) {
@@ -134,9 +154,5 @@ public class OutletSearch extends AppCompatActivity {
             return false;
         }
     }
-    @Override
-    public void onBackPressed() {
-        finish();
-        super.onBackPressed();
-    }
+
 }

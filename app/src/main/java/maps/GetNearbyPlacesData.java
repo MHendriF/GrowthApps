@@ -2,7 +2,6 @@ package maps;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.trikarya.growth.MapsActivity;
 import android.util.Log;
 import android.widget.Toast;
 

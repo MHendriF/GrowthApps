@@ -22,4 +22,67 @@
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_dashboard_drawer" />
 
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/tab"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/beranda"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="selectTab"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="@dimen/medium_margin"-->
+                <!--android:layout_marginTop="@dimen/medium_margin"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/beranda"-->
+                <!--android:textColor="@color/tab_color"-->
+                <!--android:textSize="@dimen/text_size_big"-->
+                <!--android:textStyle="bold" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="2dp"-->
+                <!--android:background="@drawable/underline" />-->
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/news"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="selectTab"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="@dimen/medium_margin"-->
+                <!--android:layout_marginTop="@dimen/medium_margin"-->
+                <!--android:layout_weight="1"-->
+                <!--android:gravity="center"-->
+                <!--android:text="@string/news"-->
+                <!--android:textColor="@color/tab_color"-->
+                <!--android:textSize="@dimen/text_size_big"-->
+                <!--android:textStyle="bold" />-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="2dp"-->
+                <!--android:background="@drawable/underline" />-->
+        <!--</LinearLayout>-->
+    <!--</LinearLayout>-->
+
+    <FrameLayout
+        android:id="@+id/frame_dashboard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </android.support.v4.widget.DrawerLayout>

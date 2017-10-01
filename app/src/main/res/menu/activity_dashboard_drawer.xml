@@ -13,6 +13,10 @@
             android:icon="@drawable/history"
             android:title="@string/history" />
         <item
+            android:id="@+id/nav_nearby"
+            android:icon="@mipmap/location"
+            android:title="@string/nearby" />
+        <item
             android:id="@+id/nav_about"
             android:icon="@mipmap/about_app"
             android:title="@string/about" />

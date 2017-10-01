@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FDEFF2</color>
-    <color name="colorPrimaryDark">#CDCCCC</color>
+    <color name="colorPrimaryDark">#ED1C24</color>
+    <!--<color name="colorPrimary">#ED1C24</color>-->
+    <!--<color name="colorPrimaryDark">#ED1C24</color>-->
     <color name="colorAccent">#FF4081</color>
     <color name="background">#DFF1F7</color>
     <color name="blue">#BE1622</color>
@@ -9,6 +11,8 @@
     <color name="orange">#F7941E</color>
     <color name="oldorange">#F26522</color>
     <color name="red">#ED1C24</color>
+    <color name="tab">#05394C</color>
+    <color name="tab_text_color">#4e717f</color>
     <color name="oldblue">#2E3192</color>
     <color name="green">#99CC97</color>
     <color name="oldgreen">#006838</color>
@@ -25,8 +29,8 @@
 
     <color name="indicator_aktif">#FFFFFF</color>
     <color name="indicator_pasif">#78828A</color>
-
-
+    <color name="news_title">#80000000</color>
+    <color name="user_detail_back">#78828A</color>
 
     <color name="youngpurple">#9F93CC</color>
 </resources>

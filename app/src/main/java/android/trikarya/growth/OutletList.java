@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,15 +38,20 @@ public class OutletList extends AppCompatActivity {
     Button load ;
 
     @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(this, Dashboard.class));
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(android.trikarya.growth.R.layout.activity_outlet_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_bar_no_icon);
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.title)).setText("LIST OUTLET");
+        ((LinearLayout) getSupportActionBar().getCustomView().findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         listView = (ListView) findViewById(android.trikarya.growth.R.id.outlet_list);
         FloatingActionButton fab = (FloatingActionButton) findViewById(android.trikarya.growth.R.id.outlet_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +71,12 @@ public class OutletList extends AppCompatActivity {
         databaseHandler = new DatabaseHandler(this);
         outletPart = new ArrayList<Outlet>();
         instanceView();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     public void instanceView()

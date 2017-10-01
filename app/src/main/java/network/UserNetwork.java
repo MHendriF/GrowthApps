@@ -16,7 +16,7 @@ public class UserNetwork extends BaseNetwork{
     }
     public void login(String username,String password, String fcmId,JsonCallback jsonCallback){
       connectionHandler.MakeConnection(ConnectionHandler.get_method, "login/" +username+"/"+password+"/"+fcmId, null, jsonCallback,"Processing","Please Wait");
-        Log.d("Login >> ", String.valueOf(SERVER_ADDRESS + "login/" +username+"/"+password+"/"+fcmId));
+        //Log.d("Login >> ", String.valueOf(SERVER_ADDRESS + "login/" +username+"/"+password+"/"+fcmId));
     }
     public void resetPassword(String email, String nik, String telepon,JsonCallback jsonCallback){
         connectionHandler.MakeConnection(ConnectionHandler.get_method,"resetPass/"+email
@@ -35,7 +35,6 @@ public class UserNetwork extends BaseNetwork{
     public void getBanner(JsonCallback jsonCallback){
         try{
             connectionHandler.MakeConnection(ConnectionHandler.get_method, "banner",null,jsonCallback);
-            Log.d("Goto >>>", SERVER_ADDRESS+"banner");
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -2,11 +2,13 @@ package android.trikarya.growth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,19 +26,32 @@ public class History extends AppCompatActivity {
     List<Logging> fromDatabase;
 
     @Override
-    public void onBackPressed() {
-        finish();
-        startActivity(new Intent(this, Dashboard.class));
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(android.trikarya.growth.R.layout.activity_history);
-        listView = (ListView) findViewById(android.trikarya.growth.R.id.history_list);
+        setContentView(R.layout.activity_history);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.custom_bar_no_icon);
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.title)).setText("HISTORY");
+        ((LinearLayout) getSupportActionBar().getCustomView().findViewById(R.id.back)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        listView = (ListView) findViewById(R.id.history_list);
+
         databaseHandler = new DatabaseHandler(this);
         instanceView();
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
     public void instanceView()
     {
         fromDatabase = databaseHandler.getAllLog();

@@ -209,7 +209,8 @@ public class SplashScreen extends Activity {
                                 user.setToleransi(toleransi);
                                 user.setStatus(1);
                                 databaseHandler.updateUser(user);
-                                intent = new Intent(SplashScreen.this, Dashboard.class);
+                                //intent = new Intent(SplashScreen.this, Dashboard.class);
+                                intent = new Intent(SplashScreen.this, MainActivity.class);
                                 startActivity(intent);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -228,7 +229,8 @@ public class SplashScreen extends Activity {
                         }catch(InterruptedException e){
                             e.printStackTrace();
                         }finally{
-                            intent = new Intent(SplashScreen.this, Dashboard.class);
+                            //intent = new Intent(SplashScreen.this, Dashboard.class);
+                            intent = new Intent(SplashScreen.this, MainActivity.class);
                             startActivity(intent);
                         }
 
@@ -281,7 +283,6 @@ public class SplashScreen extends Activity {
         for(int i = 0; i < count; i++)
             databaseHandler.createOutlet(outletList.get(i));
     }
-
 
     @Override
     protected void onPause() {

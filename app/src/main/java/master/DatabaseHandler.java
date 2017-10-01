@@ -14,7 +14,15 @@ import java.util.List;
  *   PT Trikarya Teknologi on 08/11/2015.
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
+    private String createNews = "CREATE TABLE " + NewsClass.table_name +
+            "(" + NewsClass.column_id + " INTEGER PRIMARY KEY NOT NULL,"
+            + NewsClass.column_status + " INTEGER NOT NULL,"
+            + NewsClass.column_judul + " TEXT NOT NULL,"
+            + NewsClass.column_headline + " TEXT NOT NULL,"
+            + NewsClass.column_content + " TEXT NOT NULL,"
+            + NewsClass.column_image + " TEXT NOT NULL,"
+            + NewsClass.column_date + " TEXT NOT NULL)";
     private String createBanner = "CREATE TABLE " + Banner.TABLE_NAME+
             "(" + Banner.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
             + Banner.COLUMN_FOTO + " TEXT NOT NULL,"
@@ -92,6 +100,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             KEY_KODE_PRODUK = "kd_produk",
             KEY_NAMA_PRODUK = "nm_produk",
             TABLE_KONFIGURASI = "Konfigurasi",
+            TABLE_ARTICLE = "article",
+            KEY_ID_ARTICLE =  "id",
+            KEY_JUDUL_ARTICLE = "judul",
+            KEY_HEADLINE_ARTICLE = "headline",
+            KEY_CONTENT_ARTICLE = "content",
+            KEY_PATH_ARTICLE = "image",
+            KEY_DATE_ARTICLE = "date_upload",
+            KEY_STATUS_ARTICLE = "status",
             KEY_STATUS_APP = "status_app";
     public DatabaseHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -184,7 +200,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_SKIP_REASON + " REAL NOT NULL)");
         db.execSQL("CREATE TABLE " + TABLE_KONFIGURASI +
                 "(" + KEY_STATUS_APP + " INTEGER DEFAULT 0)");
+//        db.execSQL("CREATE TABLE " + NewsClass.table_name +
+//                "(" + NewsClass.column_id + " INTEGER PRIMARY KEY NOT NULL,"
+//                + NewsClass.column_status + " INTEGER NOT NULL,"
+//                + NewsClass.column_judul + " TEXT NOT NULL,"
+//                + NewsClass.column_headline + " TEXT NOT NULL,"
+//                + NewsClass.column_content + " TEXT NOT NULL,"
+//                + NewsClass.column_image + " TEXT NOT NULL,"
+//                + NewsClass.column_date + " TEXT NOT NULL)");
+//        db.execSQL("CREATE TABLE " + Banner.TABLE_NAME+
+//                "(" + Banner.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"
+//                + Banner.COLUMN_FOTO + " TEXT NOT NULL,"
+//                + Banner.COLUMN_TANGGAL + " TEXT NOT NULL)");
         db.execSQL(createBanner);
+        db.execSQL(createNews);
     }
 
     @Override
@@ -1026,6 +1055,90 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return count;
     }
 
+    public void createNews(NewsClass newsClass)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(NewsClass.column_id,newsClass.getId());
+        values.put(NewsClass.column_status,newsClass.getStatus());
+        values.put(NewsClass.column_judul,newsClass.getJudul());
+        values.put(NewsClass.column_headline,newsClass.getHeadline());
+        values.put(NewsClass.column_content,newsClass.getContent());
+        values.put(NewsClass.column_image,newsClass.getImage());
+        values.put(NewsClass.column_date,newsClass.getDate_upload());
+        db.insert(NewsClass.table_name, null, values);
+        values.clear();
+        db.close();
+    }
+    public NewsClass getNews(int id)
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        NewsClass newsClass = null;
+        Cursor cursor = db.query(NewsClass.table_name, new String[]{NewsClass.column_id, NewsClass.column_status, NewsClass.column_judul,
+                NewsClass.column_headline,NewsClass.column_content,NewsClass.column_image,NewsClass.column_date}, NewsClass.column_id + "=?", new String[]{String.valueOf(id)}, null, null, null, null);
+        if(cursor==null)
+            return null;
+        if(cursor.moveToFirst()){
+            newsClass = new NewsClass(cursor.getInt(0),cursor.getInt(1),cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                    cursor.getString(5),cursor.getString(6));
+        }
+        cursor.close();
+        db.close();
+        return newsClass;
+    }
+    public List<NewsClass> getAllNews()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        List<NewsClass> newsClasses = new ArrayList<>();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + NewsClass.table_name, null);
+        if(cursor.moveToFirst())
+            do{
+                newsClasses.add(new NewsClass(cursor.getInt(0),cursor.getInt(1),cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5),cursor.getString(6)));
+            }while (cursor.moveToNext());
+        cursor.close();
+        db.close();
+        return newsClasses;
+    }
+    public int deleteAllNews()
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        int x = db.delete(NewsClass.table_name, "1", null);
+        db.close();
+        return x;
+    }
+    public void deleteNews(int id)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(NewsClass.table_name, NewsClass.column_id+ "=" + id, null);
+        db.close();
+    }
+    public int getNewsCount()
+    {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + NewsClass.table_name, null);
+        int count = cursor.getCount();
+        cursor.close();
+        db.close();
+        return count;
+    }
+    public int updateNews(NewsClass newsClass)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(NewsClass.column_id,newsClass.getId());
+        values.put(NewsClass.column_status,newsClass.getStatus());
+        values.put(NewsClass.column_judul,newsClass.getJudul());
+        values.put(NewsClass.column_headline,newsClass.getHeadline());
+        values.put(NewsClass.column_content,newsClass.getContent());
+        values.put(NewsClass.column_image,newsClass.getImage());
+        values.put(NewsClass.column_date,newsClass.getDate_upload());
+        int isUpdate = db.update(NewsClass.table_name,values,NewsClass.column_id + "=?",new String[]{String.valueOf(newsClass.getId())});
+        values.clear();
+        db.close();
+        return isUpdate;
+    }
+
     public void deleteAll(){
         this.deleteCity();
         this.deleteDistributor();
@@ -1036,6 +1149,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         this.deleteProduk();
         this.deleteCompetitor();
         this.deleteAllPhoto();
-        this.deleteAllBanner();
+        //this.deleteAllBanner();
     }
 }
