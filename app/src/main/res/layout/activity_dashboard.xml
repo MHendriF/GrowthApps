@@ -54,7 +54,7 @@
         <!--</LinearLayout>-->
 
         <!--<LinearLayout-->
-            <!--android:id="@+id/news"-->
+            <!--android:id="@+id/article"-->
             <!--android:layout_width="0dp"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_weight="1"-->
@@ -68,7 +68,7 @@
                 <!--android:layout_marginTop="@dimen/medium_margin"-->
                 <!--android:layout_weight="1"-->
                 <!--android:gravity="center"-->
-                <!--android:text="@string/news"-->
+                <!--android:text="@string/article"-->
                 <!--android:textColor="@color/tab_color"-->
                 <!--android:textSize="@dimen/text_size_big"-->
                 <!--android:textStyle="bold" />-->

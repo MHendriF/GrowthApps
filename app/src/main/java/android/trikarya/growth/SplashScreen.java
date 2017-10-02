@@ -94,7 +94,6 @@ public class SplashScreen extends Activity {
                 competitors = new ArrayList<Competitor>();
                 tipePhotos = new ArrayList<TipePhoto>();
                 JsonCallback jsonCallback = new JsonCallback() {
-
                     @Override
                     public void Done(JSONObject jsonObject, String message) {
                         if (message.equals(ConnectionHandler.response_message_success) && jsonObject != null) {
@@ -168,7 +167,7 @@ public class SplashScreen extends Activity {
                                     jsonArray = response.getJSONArray("visitplan");
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0) {
+                                        if (jsonResponse.length() != 0 && jsonResponse != null) {
                                             visitPlanDbs.add(new VisitPlanDb(jsonResponse.getInt("id"),
                                                     jsonResponse.getInt("kd_outlet"), jsonResponse.getString("date_visit"),
                                                     jsonResponse.getString("date_create_visit"), jsonResponse.getInt("approve_visit"),
@@ -209,7 +208,6 @@ public class SplashScreen extends Activity {
                                 user.setToleransi(toleransi);
                                 user.setStatus(1);
                                 databaseHandler.updateUser(user);
-                                //intent = new Intent(SplashScreen.this, Dashboard.class);
                                 intent = new Intent(SplashScreen.this, MainActivity.class);
                                 startActivity(intent);
                             } catch (JSONException e) {
@@ -229,7 +227,6 @@ public class SplashScreen extends Activity {
                         }catch(InterruptedException e){
                             e.printStackTrace();
                         }finally{
-                            //intent = new Intent(SplashScreen.this, Dashboard.class);
                             intent = new Intent(SplashScreen.this, MainActivity.class);
                             startActivity(intent);
                         }

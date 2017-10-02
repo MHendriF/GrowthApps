@@ -7,7 +7,7 @@ import java.util.Calendar;
  * Created by Hendry on 9/26/2017.
  */
 
-public class NewsClass implements Serializable, Comparable<NewsClass>{
+public class ArticleClass implements Serializable, Comparable<ArticleClass>{
 
     public static String table_name = "article",column_id = "id",column_status = "status",column_judul = "judul",
             column_headline = "headline",column_content = "content",column_image = "image",column_date = "date_upload";
@@ -15,7 +15,7 @@ public class NewsClass implements Serializable, Comparable<NewsClass>{
     int id, status;
     String judul,headline,content,image,date_upload;
 
-    public NewsClass(int id, int status, String judul, String headline, String content, String image, String date_upload) {
+    public ArticleClass(int id, int status, String judul, String headline, String content, String image, String date_upload) {
         this.id = id;
         this.status = status;
         this.judul = judul;
@@ -82,7 +82,7 @@ public class NewsClass implements Serializable, Comparable<NewsClass>{
     }
 
     @Override
-    public int compareTo(NewsClass another) {
+    public int compareTo(ArticleClass another) {
         //yyyy-mm-dd hh:ii:ss
         Calendar current = Calendar.getInstance();
         String[] date = getDate_upload().split(" ");

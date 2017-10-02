@@ -1,6 +1,6 @@
 <resources>
     <string name="beranda">Beranda</string>
-    <string name="news">News</string>
+    <string name="article">Article</string>
     <string name="logout">Log Out</string>
     <string name="takeOrder">Take Order</string>
     <string name="app_name">Growth Sales App</string>
@@ -76,11 +76,11 @@
 
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_tab_news">Informasi, Bantuan, Q&amp;A Sistem</string>
+    <string name="title_tab_article">Informasi, Bantuan, Q&amp;A Sistem</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_info">Info</string>
-    <string name="title_activity_outlet_list">Klien List</string>
-    <string name="title_activity_visit_plan">List Kunjungan</string>
+    <string name="title_activity_outlet_list">Outlet List</string>
+    <string name="title_activity_visit_plan">Visit Plan List</string>
     <string name="title_activity_history">History</string>
     <string name="title_activity_process_order">Process Order</string>
     <string name="title_activity_skip_order">Skip Order</string>

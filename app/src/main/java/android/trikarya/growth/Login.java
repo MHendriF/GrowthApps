@@ -78,7 +78,6 @@ public class Login extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     } else {
-                        //Toast.makeText(Login.this, message, Toast.LENGTH_LONG).show();
                         Toast.makeText(Login.this, "Pastikan username dan password anda benar!", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -92,13 +91,6 @@ public class Login extends AppCompatActivity {
         databaseHandler.createUser(returnedUser);
         this.finish();
         startActivity(new Intent(this, MainActivity.class));
-    }
-
-    private void showError() {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setMessage("Wrong Credential !");
-        alert.setPositiveButton("Got It", null);
-        alert.show();
     }
 
     @Override

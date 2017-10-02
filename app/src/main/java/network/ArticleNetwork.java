@@ -7,9 +7,9 @@ import android.util.Log;
  * Created by Hendry on 9/26/2017.
  */
 
-public class NewsNetwork extends BaseNetwork{
+public class ArticleNetwork extends BaseNetwork{
     public static final String SERVER_ADDRESS =  "https://trikarya.growth.co.id/";
-    public NewsNetwork(Context context) {
+    public ArticleNetwork(Context context) {
         super(context);
     }
     public void getList(JsonCallback jsonCallback){

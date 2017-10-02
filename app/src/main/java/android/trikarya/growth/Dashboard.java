@@ -32,8 +32,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import adapter.BannerAdapter;
+import fragment.ArticleFragment;
 import fragment.DashboardFragment;
-import fragment.NewsFragment;
 import master.Banner;
 import master.DatabaseHandler;
 import master.GetAllDataCallback;
@@ -133,9 +133,9 @@ public class Dashboard extends AppCompatActivity
         }
 
         beranda = (LinearLayout) findViewById(R.id.beranda);
-        news = (LinearLayout) findViewById(R.id.news);
+        news = (LinearLayout) findViewById(R.id.article);
         bitmaps = new ArrayList<>();
-        if (getIntent().hasExtra("tipe") && getIntent().getStringExtra("tipe").toString().equals("news")) {
+        if (getIntent().hasExtra("tipe") && getIntent().getStringExtra("tipe").toString().equals("article")) {
             selectTab(news);
         } else
             selectTab(beranda);
@@ -188,11 +188,11 @@ public class Dashboard extends AppCompatActivity
                     //Log.d("masuk", "basong");
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_dashboard, dashboardFragment).commit();
                     break;
-                case R.id.news:
-                    NewsFragment newsFragment = new NewsFragment();
+                case R.id.article:
+                    ArticleFragment articleFragment = new ArticleFragment();
                     Log.d("masuk", "sundel");
                     //DashboardFragment dashboardFragments = new DashboardFragment();
-                    //getSupportFragmentManager().beginTransaction().replace(R.id.frame_dashboard, newsFragment).commit();
+                    //getSupportFragmentManager().beginTransaction().replace(R.id.frame_dashboard, articleFragment).commit();
                     break;
             }
             if (activeTab != 0)

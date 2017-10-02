@@ -1,7 +1,5 @@
 package fragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,7 +30,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,8 +45,6 @@ import master.City;
 import master.Competitor;
 import master.DatabaseHandler;
 import master.Distributor;
-import master.GetAllDataCallback;
-import master.GetVisitPlanCallback;
 import master.Outlet;
 import master.Produk;
 import master.ServerRequest;
@@ -100,7 +95,7 @@ public class DashboardFragment extends Fragment implements View.OnClickListener{
     List<Competitor> competitors;
     List<TipePhoto> tipePhotos;
 
-    private NewsFragment.OnFragmentInteractionListener mListener;
+    private ArticleFragment.OnFragmentInteractionListener mListener;
 
     public DashboardFragment() {
         // Required empty public constructor

@@ -2,35 +2,25 @@ package android.trikarya.growth;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import fragment.ArticleFragment;
 import fragment.DashboardFragment;
-import fragment.NewsFragment;
 
 /**
  * Created by Hendry on 9/25/2017.
  */
 
 public class MainActivity extends AppCompatActivity{
-    LinearLayout beranda, news;
+    LinearLayout beranda, article;
     int activeTab = 0;
     List<Bitmap> bitmaps;
 
@@ -43,10 +33,10 @@ public class MainActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_main);
         beranda = (LinearLayout) findViewById(R.id.beranda);
-        news = (LinearLayout) findViewById(R.id.news);
+        article = (LinearLayout) findViewById(R.id.article);
         bitmaps = new ArrayList<>();
-        if (getIntent().hasExtra("tipe") && getIntent().getStringExtra("tipe").toString().equals("news")) {
-            selectTab(news);
+        if (getIntent().hasExtra("tipe") && getIntent().getStringExtra("tipe").toString().equals("article")) {
+            selectTab(article);
         } else
             selectTab(beranda);
     }
@@ -59,9 +49,9 @@ public class MainActivity extends AppCompatActivity{
                     DashboardFragment dashboardFragment = new DashboardFragment();
                     getSupportFragmentManager().beginTransaction().replace(R.id.frame_dashboard, dashboardFragment).commit();
                     break;
-                case R.id.news:
-                    NewsFragment newsFragment = new NewsFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_dashboard, newsFragment).commit();
+                case R.id.article:
+                    ArticleFragment articleFragment = new ArticleFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frame_dashboard, articleFragment).commit();
                     break;
             }
             if (activeTab != 0)

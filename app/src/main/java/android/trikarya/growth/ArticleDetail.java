@@ -19,27 +19,27 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import master.NewsClass;
+import master.ArticleClass;
 import network.ConnectionHandler;
 import network.JsonCallback;
-import network.NewsNetwork;
+import network.ArticleNetwork;
 import utility.ImageHelper;
 
 /**
  * Created by Hendry on 9/26/2017.
  */
 
-public class NewsDetail extends AppCompatActivity {
+public class ArticleDetail extends AppCompatActivity {
     TextView judul,headline,tanggal,isi,warning;
     ImageView imageView;
     ProgressBar progressBar;
-    NewsNetwork newsNetwork;
+    ArticleNetwork articleNetwork;
     ImageHelper imageHelper;
     RelativeLayout container;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_detail);
+        setContentView(R.layout.activity_article_detail);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.custom_bar);
@@ -51,7 +51,7 @@ public class NewsDetail extends AppCompatActivity {
             }
         });
 
-        newsNetwork = new NewsNetwork(this);
+        articleNetwork = new ArticleNetwork(this);
         imageHelper = new ImageHelper(this);
         container = (RelativeLayout) findViewById(R.id.top_panel);
         judul = (TextView) findViewById(R.id.judul);
@@ -59,24 +59,24 @@ public class NewsDetail extends AppCompatActivity {
         headline = (TextView) findViewById(R.id.headline);
         tanggal = (TextView) findViewById(R.id.date);
         isi = (TextView) findViewById(R.id.content);
-        imageView = (ImageView) findViewById(R.id.im_news);
+        imageView = (ImageView) findViewById(R.id.im_article);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        final NewsClass newsClass = (NewsClass) getIntent().getSerializableExtra("data");
-        if(newsClass.getImage().contains(".jpg") || newsClass.getImage().contains(".png")){
-            newsNetwork.getDetail(newsClass.getId(), new JsonCallback() {
+        final ArticleClass articleClass = (ArticleClass) getIntent().getSerializableExtra("data");
+        if(articleClass.getImage().contains(".jpg") || articleClass.getImage().contains(".png")){
+            articleNetwork.getDetail(articleClass.getId(), new JsonCallback() {
                 @Override
                 public void Done(JSONObject jsonObject, String message) {
                     if (jsonObject != null && message.equals(ConnectionHandler.response_message_success)) {
                         try {
                             Point size = new Point();
-                            NewsDetail.this.getWindowManager().getDefaultDisplay().getSize(size);
+                            ArticleDetail.this.getWindowManager().getDefaultDisplay().getSize(size);
                             int width = size.x;
-                            newsClass.setImage(jsonObject.getString(ConnectionHandler.response_data));
+                            articleClass.setImage(jsonObject.getString(ConnectionHandler.response_data));
                             byte[] decodedString = Base64.decode(jsonObject.getString(ConnectionHandler.response_data), Base64.DEFAULT);
                             Bitmap bitmap = imageHelper.getFitScreenBitmap(BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length), width);
                             progressBar.setVisibility(View.GONE);
                             int height = width * bitmap.getHeight() / bitmap.getWidth();
-                            float d = NewsDetail.this.getResources().getDisplayMetrics().density;
+                            float d = ArticleDetail.this.getResources().getDisplayMetrics().density;
                             int margin = (int) (16 * d); // margin in pixels
                             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                                     ViewGroup.LayoutParams.MATCH_PARENT, height);
@@ -97,16 +97,16 @@ public class NewsDetail extends AppCompatActivity {
             });
         }
         else {
-            byte[] decodedString = Base64.decode(newsClass.getImage(), Base64.DEFAULT);
+            byte[] decodedString = Base64.decode(articleClass.getImage(), Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             imageView.setImageBitmap(bitmap);
             imageView.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
         }
-        judul.setText(newsClass.getJudul());
-        headline.setText(newsClass.getHeadline());
-        tanggal.setText(newsClass.getDate_upload().split(" ")[0]);
-        isi.setText(Html.fromHtml(newsClass.getContent()));
+        judul.setText(articleClass.getJudul());
+        headline.setText(articleClass.getHeadline());
+        tanggal.setText(articleClass.getDate_upload().split(" ")[0]);
+        isi.setText(Html.fromHtml(articleClass.getContent()));
     }
 
     @Override

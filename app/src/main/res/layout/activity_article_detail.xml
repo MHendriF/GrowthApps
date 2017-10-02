@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    tools:context="android.trikarya.growth.NewsDetail"
+    tools:context="android.trikarya.growth.ArticleDetail"
     android:background="@color/colorPrimary">
 
     <RelativeLayout
@@ -18,7 +18,7 @@
             android:layout_height="@dimen/im_news_size"
             android:background="@color/gray">
             <ImageView
-                android:id="@+id/im_news"
+                android:id="@+id/im_article"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"

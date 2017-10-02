@@ -9,6 +9,7 @@ import android.util.Log;
 
 public class UserNetwork extends BaseNetwork{
 
+    private static final String TAG = "UserNetwork";
     public static final String SERVER_ADDRESS =  "https://trikarya.growth.co.id/";
 
     public UserNetwork(Context context) {
@@ -16,7 +17,7 @@ public class UserNetwork extends BaseNetwork{
     }
     public void login(String username,String password, String fcmId,JsonCallback jsonCallback){
       connectionHandler.MakeConnection(ConnectionHandler.get_method, "login/" +username+"/"+password+"/"+fcmId, null, jsonCallback,"Processing","Please Wait");
-        //Log.d("Login >> ", String.valueOf(SERVER_ADDRESS + "login/" +username+"/"+password+"/"+fcmId));
+        Log.d(TAG, String.valueOf(SERVER_ADDRESS + "login/" +username+"/"+password+"/"+fcmId));
     }
     public void resetPassword(String email, String nik, String telepon,JsonCallback jsonCallback){
         connectionHandler.MakeConnection(ConnectionHandler.get_method,"resetPass/"+email

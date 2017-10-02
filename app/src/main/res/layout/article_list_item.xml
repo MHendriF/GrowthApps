@@ -50,14 +50,14 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/container_news"
+        android:id="@+id/container_article"
         android:layout_width="match_parent"
         android:layout_height="@dimen/im_news_size"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:background="@color/gray">
 
         <ImageView
-            android:id="@+id/im_news"
+            android:id="@+id/im_article"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
