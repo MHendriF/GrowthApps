@@ -26,7 +26,7 @@ public class UserNetwork extends BaseNetwork{
     public void getAllData(int id, int area, JsonCallback jsonCallback, boolean prog){
         if(prog) {
             connectionHandler.MakeConnection(ConnectionHandler.get_method,"getAll/"+id+"/"+area,null,jsonCallback,"Processing","Please Wait");
-            //Log.d("getAllData 1 >> ", String.valueOf(SERVER_ADDRESS + "getAll/" +id+"/"+area));
+            Log.d("getAllData 1 >> ", String.valueOf(SERVER_ADDRESS + "getAll/" +id+"/"+area));
         }
         else {
             connectionHandler.MakeConnection(ConnectionHandler.get_method, "getAll/" + id + "/" + area, null, jsonCallback);

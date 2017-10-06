@@ -167,7 +167,7 @@ public class SplashScreen extends Activity {
                                     jsonArray = response.getJSONArray("visitplan");
                                     for (int i = 0; i < jsonArray.length(); i++) {
                                         JSONObject jsonResponse = jsonArray.getJSONObject(i);
-                                        if (jsonResponse.length() != 0 && jsonResponse != null) {
+                                        if (jsonResponse.length() != 0 && !jsonResponse.getString("status_visit").equals(null)) {
                                             visitPlanDbs.add(new VisitPlanDb(jsonResponse.getInt("id"),
                                                     jsonResponse.getInt("kd_outlet"), jsonResponse.getString("date_visit"),
                                                     jsonResponse.getString("date_create_visit"), jsonResponse.getInt("approve_visit"),
